@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tu Carrera Tec | Explorador de carreras</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">TC</div>
+      <div>
+        <strong>Tu Carrera Tec</strong>
+        <small>Explorador académico</small>
+      </div>
+    </div>
+
+    <nav>
+      <button class="nav-item activo" id="navExplorar">⌕ <span>Explorar carreras</span></button>
+      <button class="nav-item" id="navInicio">⌂ <span>Inicio</span></button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <span>Prototipo · Sprint 1</span>
+    </div>
+  </aside>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="crumb" id="breadcrumb">Explorar carreras</div>
+      <div class="status"><span></span> Versión funcional</div>
+    </header>
+
+    <main>
+      <section id="catalogo">
+        <div class="welcome">
+          <div>
+            <p class="eyebrow">ORIENTACIÓN ACADÉMICA</p>
+            <h1>Encuentra una carrera que conecte contigo.</h1>
+            <p class="lead">Explora las carreras y conoce su información, plan de estudios, perfil de egreso y campo laboral.</p>
+          </div>
+          <div class="welcome-art">
+            <div class="circle c1"></div>
+            <div class="circle c2"></div>
+            <div class="art-card">TU<br><b>CARRERA</b><br>TEC</div>
+          </div>
+        </div>
+
+        <section class="search-panel">
+          <div class="search-title">
+            <h2>¿Qué carrera quieres conocer?</h2>
+            <p>Busca por nombre o explora por área.</p>
+          </div>
+          <div class="controls">
+            <div class="search-box">
+              <span>⌕</span>
+              <input id="buscador" type="search" placeholder="Escribe el nombre de una carrera...">
+            </div>
+            <select id="filtroArea">
+              <option value="Todas">Todas las áreas</option>
+              <option value="Tecnologías">Tecnologías</option>
+              <option value="Ingeniería">Ingeniería</option>
+              <option value="Administración">Administración</option>
+            </select>
+          </div>
+        </section>
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CATÁLOGO</p>
+            <h2>Carreras disponibles</h2>
+          </div>
+          <span id="contador"></span>
+        </div>
+
+        <div id="listaCarreras" class="career-grid"></div>
+        <div id="sinResultados" class="empty hidden">
+          <div>⌕</div>
+          <h3>No encontramos esa carrera</h3>
+          <p>Prueba con otro nombre o cambia el área de búsqueda.</p>
+        </div>
+      </section>
+
+      <section id="detalle" class="hidden">
+        <button id="btnVolver" class="back-link">← Volver al catálogo</button>
+
+        <div class="career-hero">
+          <div>
+            <span id="detalleArea" class="pill"></span>
+            <h1 id="detalleNombre"></h1>
+            <p id="detalleResumen"></p>
+          </div>
+          <div class="career-code" id="careerCode"></div>
+        </div>
+
+        <div class="detail-layout">
+          <aside class="detail-menu">
+            <p>CONSULTAR</p>
+            <button class="detail-tab active" data-tab="info">Información general <span>›</span></button>
+            <button class="detail-tab" data-tab="plan">Plan de estudios <span>›</span></button>
+            <button class="detail-tab" data-tab="perfil">Perfil de egreso <span>›</span></button>
+            <button class="detail-tab" data-tab="laboral">Campo laboral <span>›</span></button>
+          </aside>
+
+          <article class="detail-content" id="panelDetalle"></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Tu Carrera Tec</span>
+      <span>Primer incremento funcional · Sprint 1</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
