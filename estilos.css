@@ -432,3 +432,53 @@ footer {
   .career-code { display: none; }
   footer { flex-direction: column; gap: 5px; }
 }
+
+/* ===== HU-06 · Actividades (T-44) ===== */
+.activity-list { display: grid; gap: 13px; margin-top: 20px; }
+
+.activity-card {
+  display: flex;
+  gap: 15px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 18px;
+  background: #fbfcff;
+}
+
+.activity-num {
+  flex: 0 0 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #eaf1ff;
+  color: var(--blue);
+  font-family: "Space Grotesk";
+  font-weight: 700;
+}
+
+.activity-card h4 { margin: 0 0 6px; font-family: "Space Grotesk"; color: var(--navy); font-size: 16px; }
+.activity-card p { margin: 0 0 10px; font-size: 14px; }
+
+/* T-45 · aspecto de la carrera que representa cada actividad */
+.aspect-tag {
+  display: inline-flex;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: #e0f7fb;
+  color: #0e7490;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* T-46 · acceso a las actividades desde Información general */
+.btn-link {
+  margin-top: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--blue);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+.btn-link:hover { text-decoration: underline; }

@@ -102,6 +102,7 @@ const carreras = [
 ];
 
 const $ = id => document.getElementById(id);
+let carreraActual = null;
 
 function renderCatalogo() {
   const text = $("buscador").value.toLowerCase().trim();
@@ -132,6 +133,7 @@ function renderCatalogo() {
 function abrirCarrera(id) {
   const c = carreras.find(x => x.id === id);
   if (!c) return;
+  carreraActual = c;
 
   $("catalogo").classList.add("hidden");
   $("detalle").classList.remove("hidden");
@@ -160,7 +162,9 @@ function renderPanel(c, tab) {
         <li>Área a la que pertenece.</li>
         <li>Acceso directo al plan de estudios.</li>
         <li>Acceso al perfil de egreso y campo laboral.</li>
+        <li>Actividades relacionadas con la carrera.</li>
       </ul>
+      <button class="btn-link" onclick="irATab('actividades')">Conocer las actividades de esta carrera →</button>
     `;
   }
 
@@ -204,16 +208,39 @@ function renderPanel(c, tab) {
       </div>
     `;
   }
+
+  if (tab === "actividades") {
+    const acts = obtenerActividades(c.id);
+    $("panelDetalle").innerHTML = `
+      <p class="eyebrow">HU-06 · ACTIVIDADES</p>
+      <h2>¿Qué podrías hacer en esta carrera?</h2>
+      <p>Estas actividades representan, de forma sencilla, situaciones del área profesional de ${c.nombre}.</p>
+      ${acts.length ? `
+        <div class="activity-list">
+          ${acts.map((a, i) => `
+            <div class="activity-card">
+              <div class="activity-num">${i + 1}</div>
+              <div>
+                <h4>${a.nombre}</h4>
+                <p>${a.descripcion}</p>
+                <span class="aspect-tag">Representa: ${a.aspecto}</span>
+              </div>
+            </div>
+          `).join("")}
+        </div>
+      ` : `<p>Las actividades de esta carrera estarán disponibles próximamente.</p>`}
+    `;
+  }
+}
+
+function irATab(tab) {
+  if (!carreraActual) return;
+  document.querySelectorAll(".detail-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  renderPanel(carreraActual, tab);
 }
 
 document.querySelectorAll(".detail-tab").forEach(button => {
-  button.addEventListener("click", () => {
-    const cName = $("detalleNombre").textContent;
-    const c = carreras.find(x => x.nombre === cName);
-    document.querySelectorAll(".detail-tab").forEach(b => b.classList.remove("active"));
-    button.classList.add("active");
-    renderPanel(c, button.dataset.tab);
-  });
+  button.addEventListener("click", () => irATab(button.dataset.tab));
 });
 
 $("btnVolver").addEventListener("click", () => {
