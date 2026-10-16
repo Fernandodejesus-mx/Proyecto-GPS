@@ -99,6 +99,158 @@ const carreras = [
       ["Emprendimiento", "Desarrollo y gestión de iniciativas empresariales."]
     ]
   }
+  ,
+  {
+    id: 5,
+    nombre: "Ingeniería en Electrónica",
+    area: "Ingeniería",
+    resumen: "Diseño, análisis y mantenimiento de circuitos y sistemas electrónicos.",
+    info: "Esta carrera se relaciona con el diseño, análisis y mantenimiento de sistemas electrónicos utilizados en equipos, procesos industriales y dispositivos tecnológicos.",
+    plan: [
+      ["1er semestre", ["Cálculo Diferencial", "Fundamentos de Investigación", "Programación"]],
+      ["2do semestre", ["Cálculo Integral", "Circuitos Eléctricos", "Mediciones Eléctricas"]],
+      ["3er semestre", ["Dispositivos Electrónicos", "Análisis de Circuitos", "Instrumentación"]],
+      ["4to semestre", ["Sistemas Digitales", "Microcontroladores", "Electrónica Analógica"]]
+    ],
+    perfil: [
+      "Conocimientos de circuitos y sistemas electrónicos.",
+      "Capacidad para analizar y diagnosticar fallas en equipos.",
+      "Competencia para diseñar y probar soluciones electrónicas.",
+      "Capacidad para utilizar instrumentos de medición."
+    ],
+    laboral: [
+      ["Diseño electrónico", "Apoyo en diseño y prueba de circuitos y dispositivos."],
+      ["Mantenimiento", "Diagnóstico y mantenimiento de equipos electrónicos."],
+      ["Automatización", "Integración de sensores y sistemas de control."],
+      ["Pruebas y calidad", "Verificación del funcionamiento de equipos."]
+    ]
+  },
+  {
+    id: 6,
+    nombre: "Ingeniería en Industrias Alimentarias",
+    area: "Alimentos y Gastronomía",
+    resumen: "Procesamiento, conservación e inocuidad de productos alimenticios.",
+    info: "Esta carrera se enfoca en los procesos para transformar, conservar y evaluar alimentos, considerando la calidad, la higiene y el aprovechamiento de materias primas.",
+    plan: [
+      ["1er semestre", ["Cálculo Diferencial", "Química", "Biología"]],
+      ["2do semestre", ["Cálculo Integral", "Química Orgánica", "Microbiología"]],
+      ["3er semestre", ["Análisis de Alimentos", "Balances de Materia", "Termodinámica"]],
+      ["4to semestre", ["Tecnología de Alimentos", "Operaciones Unitarias", "Control de Calidad"]]
+    ],
+    perfil: [
+      "Conocimientos de procesamiento y conservación de alimentos.",
+      "Capacidad para evaluar calidad e inocuidad.",
+      "Competencia para participar en el desarrollo de productos alimenticios.",
+      "Capacidad para mejorar procesos de producción de alimentos."
+    ],
+    laboral: [
+      ["Producción de alimentos", "Participación en procesos de elaboración y envasado."],
+      ["Calidad e inocuidad", "Revisión de higiene, calidad y seguridad alimentaria."],
+      ["Desarrollo de productos", "Apoyo en la formulación y mejora de productos."],
+      ["Laboratorio", "Análisis de materias primas y productos terminados."]
+    ]
+  },
+  {
+    id: 7,
+    nombre: "Ingeniería Bioquímica",
+    area: "Ingeniería",
+    resumen: "Aplicación de la química y la biología en procesos industriales y biotecnológicos.",
+    info: "La carrera aplica conocimientos de química, biología y procesos para desarrollar y mejorar productos, analizar muestras y participar en procesos biotecnológicos.",
+    plan: [
+      ["1er semestre", ["Cálculo Diferencial", "Química", "Biología"]],
+      ["2do semestre", ["Cálculo Integral", "Química Orgánica", "Bioquímica"]],
+      ["3er semestre", ["Microbiología", "Balances de Materia", "Fisicoquímica"]],
+      ["4to semestre", ["Biología Molecular", "Termodinámica", "Análisis Instrumental"]]
+    ],
+    perfil: [
+      "Conocimientos de química, biología y procesos bioquímicos.",
+      "Capacidad para realizar e interpretar análisis de laboratorio.",
+      "Competencia para participar en procesos biotecnológicos.",
+      "Capacidad para evaluar calidad y proponer mejoras."
+    ],
+    laboral: [
+      ["Laboratorio", "Análisis de muestras y pruebas de calidad."],
+      ["Biotecnología", "Apoyo en procesos biológicos y de fermentación."],
+      ["Industria", "Participación en procesos químicos y biológicos."],
+      ["Medio ambiente", "Apoyo en análisis y tratamiento de residuos."]
+    ]
+  },
+  {
+    id: 8,
+    nombre: "Ingeniería Mecatrónica",
+    area: "Ingeniería",
+    resumen: "Integración de mecánica, electrónica, control y programación.",
+    info: "Esta carrera integra sistemas mecánicos, electrónicos y de control para diseñar, operar y mejorar equipos automatizados y soluciones robóticas.",
+    plan: [
+      ["1er semestre", ["Cálculo Diferencial", "Fundamentos de Investigación", "Programación"]],
+      ["2do semestre", ["Cálculo Integral", "Circuitos Eléctricos", "Estática"]],
+      ["3er semestre", ["Electrónica", "Mecánica de Materiales", "Sistemas Digitales"]],
+      ["4to semestre", ["Microcontroladores", "Control", "Diseño Mecánico"]]
+    ],
+    perfil: [
+      "Conocimientos de mecánica, electrónica y programación.",
+      "Capacidad para integrar componentes de sistemas automatizados.",
+      "Competencia para diseñar y probar soluciones mecatrónicas.",
+      "Capacidad para resolver problemas de control y automatización."
+    ],
+    laboral: [
+      ["Robótica", "Apoyo en diseño y programación de sistemas robóticos."],
+      ["Automatización", "Integración y mejora de procesos automatizados."],
+      ["Mantenimiento", "Diagnóstico de sistemas mecánicos y electrónicos."],
+      ["Diseño", "Modelado y pruebas de prototipos."]
+    ]
+  },
+  {
+    id: 9,
+    nombre: "Ingeniería Civil",
+    area: "Ingeniería",
+    resumen: "Planeación, diseño y construcción de infraestructura y obras civiles.",
+    info: "Esta carrera prepara para participar en la planeación, diseño, construcción y supervisión de obras como edificios, caminos y sistemas de infraestructura.",
+    plan: [
+      ["1er semestre", ["Cálculo Diferencial", "Dibujo", "Química"]],
+      ["2do semestre", ["Cálculo Integral", "Estática", "Topografía"]],
+      ["3er semestre", ["Resistencia de Materiales", "Geología", "Materiales de Construcción"]],
+      ["4to semestre", ["Análisis Estructural", "Mecánica de Suelos", "Hidráulica"]]
+    ],
+    perfil: [
+      "Conocimientos de materiales, estructuras y construcción.",
+      "Capacidad para interpretar planos y datos de campo.",
+      "Competencia para apoyar la planeación y supervisión de obras.",
+      "Capacidad para considerar seguridad, costos y uso responsable de recursos."
+    ],
+    laboral: [
+      ["Construcción", "Apoyo en ejecución y supervisión de obras."],
+      ["Diseño y cálculo", "Colaboración en proyectos de infraestructura."],
+      ["Topografía", "Levantamientos y mediciones de terrenos."],
+      ["Agua e infraestructura", "Participación en proyectos hidráulicos y urbanos."]
+    ]
+  },
+  {
+    id: 10,
+    nombre: "Licenciatura en Gastronomía",
+    area: "Alimentos y Gastronomía",
+    resumen: "Preparación de alimentos, técnicas culinarias y administración de servicios gastronómicos.",
+    info: "Esta licenciatura combina técnicas culinarias, planeación de menús, higiene, costos y organización de servicios de alimentos.",
+    plan: [
+      ["1er semestre", ["Bases Culinarias", "Higiene y Seguridad", "Introducción a la Gastronomía"]],
+      ["2do semestre", ["Cocina Mexicana", "Nutrición", "Costos de Alimentos"]],
+      ["3er semestre", ["Panadería", "Repostería", "Administración de Restaurantes"]],
+      ["4to semestre", ["Cocina Internacional", "Planeación de Menús", "Servicio de Alimentos y Bebidas"]]
+    ],
+    perfil: [
+      "Conocimientos de técnicas culinarias y preparación de alimentos.",
+      "Capacidad para planear menús y organizar operaciones de cocina.",
+      "Competencia para aplicar normas de higiene y seguridad alimentaria.",
+      "Capacidad para calcular costos y colaborar en la administración de servicios gastronómicos."
+    ],
+    laboral: [
+      ["Restaurantes y hoteles", "Preparación de alimentos y coordinación de cocina."],
+      ["Desarrollo de menús", "Diseño de propuestas culinarias."],
+      ["Administración gastronómica", "Control de costos y operación de establecimientos."],
+      ["Servicios y eventos", "Organización de banquetes y servicios de alimentos."]
+    ]
+  }
+
 ];
 
 const $ = id => document.getElementById(id);
