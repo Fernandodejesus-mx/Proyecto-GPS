@@ -6,6 +6,7 @@
   <title>Tu Carrera Tec | Explorador de carreras</title>
   <link rel="stylesheet" href="estilos.css">
   <link rel="stylesheet" href="carreras-recomendadas.css">
+  <link rel="stylesheet" href="faq.css">
 </head>
 <body>
   <aside class="sidebar">
@@ -22,6 +23,7 @@
       <button class="nav-item" id="navInicio">⌂ <span>Inicio</span></button>
       <button class="nav-item" id="navCuestionario">✎ <span>Cuestionario</span></button>
       <button class="nav-item" id="navCarrerasRecomendadas">🎯 <span>Carreras recomendadas</span></button>
+      <button class="nav-item" id="navFaq">? <span>Preguntas frecuentes</span></button>
     </nav>
 
     <div class="sidebar-bottom">
@@ -288,6 +290,28 @@
           </div>
         </div>
       </section>
+
+      <!-- NUEVA SECCIÓN: Preguntas frecuentes (HU-10 · T-78) -->
+      <section id="faq" class="hidden" aria-labelledby="faqTitulo">
+        <div class="faq-hero">
+          <div>
+            <p class="eyebrow">RESUELVE TUS DUDAS</p>
+            <h1 id="faqTitulo">Preguntas frecuentes</h1>
+            <p class="lead">Encuentra respuestas a tus dudas sobre las carreras del ITSX.</p>
+          </div>
+          <span class="faq-total" id="faqTotal"></span>
+        </div>
+
+        <div class="faq-filtros" id="faqFiltros" role="group" aria-label="Filtrar preguntas por tema"></div>
+
+        <div id="faqLista"></div>
+
+        <div id="faqVacio" class="empty hidden">
+          <div>?</div>
+          <h3>Aún no hay preguntas disponibles</h3>
+          <p>Estamos preparando las respuestas. Vuelve pronto.</p>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -305,5 +329,8 @@
   <!-- T-67 a T-71: Carreras Recomendadas -->
   <script src="carreras-recomendadas.js"></script>
   <script src="carreras-recomendadas-ui.js"></script>
+  <!-- HU-10 · T-78: Preguntas frecuentes -->
+  <script src="faq-datos.js"></script>
+  <script src="faq.js"></script>
 </body>
 </html>
