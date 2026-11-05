@@ -1,0 +1,36 @@
+/* Tu Carrera Tec · variables y fondos por carrera (T-98 / T-100) */
+:root {
+  --carrera-sistemas: #2563EB;
+  --carrera-sistemas-suave: #E9EFFD;
+  --carrera-industrial: #3F3F46;
+  --carrera-industrial-suave: #ECECEC;
+  --carrera-electromecanica: #A16207;
+  --carrera-electromecanica-suave: #F6EFE6;
+  --carrera-gestion-empresarial: #7C3AED;
+  --carrera-gestion-empresarial-suave: #F2EBFD;
+  --carrera-electronica: #0E7490;
+  --carrera-electronica-suave: #E7F1F4;
+  --carrera-industrias-alimentarias: #15803D;
+  --carrera-industrias-alimentarias-suave: #E8F2EC;
+  --carrera-bioquimica: #BE185D;
+  --carrera-bioquimica-suave: #F8E8EF;
+  --carrera-mecatronica: #A21CAF;
+  --carrera-mecatronica-suave: #F6E8F7;
+  --carrera-civil: #78350F;
+  --carrera-civil-suave: #F2EBE7;
+  --carrera-gastronomia: #B91C1C;
+  --carrera-gastronomia-suave: #F8E8E8;
+}
+
+/* Uso: <section class="fondo-carrera fondo-sistemas"> ... </section> */
+.fondo-carrera { background-position: center; background-size: cover; background-repeat: no-repeat; }
+.fondo-sistemas { background-color: var(--carrera-sistemas-suave); background-image: url("sistemas/fondo.png"); }
+.fondo-industrial { background-color: var(--carrera-industrial-suave); background-image: url("industrial/fondo.png"); }
+.fondo-electromecanica { background-color: var(--carrera-electromecanica-suave); background-image: url("electromecanica/fondo.png"); }
+.fondo-gestion-empresarial { background-color: var(--carrera-gestion-empresarial-suave); background-image: url("gestion-empresarial/fondo.png"); }
+.fondo-electronica { background-color: var(--carrera-electronica-suave); background-image: url("electronica/fondo.png"); }
+.fondo-industrias-alimentarias { background-color: var(--carrera-industrias-alimentarias-suave); background-image: url("industrias-alimentarias/fondo.png"); }
+.fondo-bioquimica { background-color: var(--carrera-bioquimica-suave); background-image: url("bioquimica/fondo.png"); }
+.fondo-mecatronica { background-color: var(--carrera-mecatronica-suave); background-image: url("mecatronica/fondo.png"); }
+.fondo-civil { background-color: var(--carrera-civil-suave); background-image: url("civil/fondo.png"); }
+.fondo-gastronomia { background-color: var(--carrera-gastronomia-suave); background-image: url("gastronomia/fondo.png"); }

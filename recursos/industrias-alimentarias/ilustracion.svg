@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 124" width="900" height="372">
+<title>Ingeniería en Industrias Alimentarias: Espiga y engrane de planta</title>
+<rect width="300" height="124" fill="#E8F2EC"/>
+
+            <defs><path id="hoja6" d="M0 0 Q12 -16 24 0 Q12 16 0 0Z"/></defs>
+            <g fill="#15803D" opacity=".14">
+              <use href="#hoja6" transform="translate(14 22) rotate(-30)"/><use href="#hoja6" transform="translate(262 16) rotate(40)"/><use href="#hoja6" transform="translate(40 96) rotate(20)"/><use href="#hoja6" transform="translate(240 100) rotate(-35)"/><use href="#hoja6" transform="translate(150 12) rotate(70)"/><use href="#hoja6" transform="translate(278 62) rotate(-70)"/>
+            </g>
+            <path d="M104 108 V28" stroke="#15803D" stroke-width="4" stroke-linecap="round"/>
+            <g fill="#15803D">
+              <ellipse cx="104" cy="22" rx="7" ry="13"/>
+              <ellipse cx="90" cy="42" rx="7" ry="14" transform="rotate(-35 90 42)"/><ellipse cx="118" cy="42" rx="7" ry="14" transform="rotate(35 118 42)"/>
+              <ellipse cx="90" cy="64" rx="7" ry="14" transform="rotate(-35 90 64)" opacity=".6"/><ellipse cx="118" cy="64" rx="7" ry="14" transform="rotate(35 118 64)" opacity=".6"/>
+              <ellipse cx="90" cy="86" rx="7" ry="14" transform="rotate(-35 90 86)"/><ellipse cx="118" cy="86" rx="7" ry="14" transform="rotate(35 118 86)"/>
+            </g>
+            <g transform="translate(200 66)" fill="#15803D" opacity=".55">
+              <circle r="24"/>
+              <rect x="-5" y="-34" width="10" height="13" rx="2"/><rect x="-5" y="-34" width="10" height="13" rx="2" transform="rotate(45)"/><rect x="-5" y="-34" width="10" height="13" rx="2" transform="rotate(90)"/><rect x="-5" y="-34" width="10" height="13" rx="2" transform="rotate(135)"/><rect x="-5" y="-34" width="10" height="13" rx="2" transform="rotate(180)"/><rect x="-5" y="-34" width="10" height="13" rx="2" transform="rotate(225)"/><rect x="-5" y="-34" width="10" height="13" rx="2" transform="rotate(270)"/><rect x="-5" y="-34" width="10" height="13" rx="2" transform="rotate(315)"/>
+              <circle r="10" fill="#fff" opacity="1"/>
+            </g>
+          
+</svg>

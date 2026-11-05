@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 124" width="900" height="372">
+<title>Ingeniería Electromecánica: Motor y rayo eléctrico</title>
+<rect width="300" height="124" fill="#F6EFE6"/>
+
+            <g fill="none" stroke="#A16207" stroke-width="2.5" opacity=".2" stroke-linecap="round">
+              <path d="M0 22 q18.75 -16 37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0"/>
+              <path d="M0 62 q18.75 -16 37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0"/>
+              <path d="M0 102 q18.75 -16 37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0 t37.5 0"/>
+            </g>
+            <rect x="64" y="50" width="16" height="30" rx="5" fill="#A16207" opacity=".55"/>
+            <rect x="78" y="38" width="100" height="54" rx="12" fill="#A16207"/>
+            <rect x="92" y="38" width="7" height="54" fill="#fff" opacity=".85"/><rect x="108" y="38" width="7" height="54" fill="#fff" opacity=".85"/><rect x="124" y="38" width="7" height="54" fill="#fff" opacity=".85"/>
+            <rect x="176" y="60" width="30" height="10" rx="5" fill="#A16207" opacity=".55"/>
+            <path d="M238 24 L214 66 H232 L220 102 L256 56 H238 L250 24 Z" fill="#fff" stroke="#A16207" stroke-width="4" stroke-linejoin="round"/>
+          
+</svg>

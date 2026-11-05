@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 124" width="900" height="372">
+<title>Ingeniería Civil: Puente y plano</title>
+<rect width="300" height="124" fill="#F2EBE7"/>
+
+            <defs><pattern id="pt9" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0 H0 V20" fill="none" stroke="#78350F" stroke-width="1" opacity=".16"/></pattern></defs>
+            <rect width="300" height="124" fill="url(#pt9)"/>
+            <rect x="48" y="98" width="204" height="10" rx="5" fill="#78350F" opacity=".3"/>
+            <rect x="108" y="84" width="10" height="20" rx="2" fill="#78350F" opacity=".55"/><rect x="182" y="84" width="10" height="20" rx="2" fill="#78350F" opacity=".55"/>
+            <g stroke="#78350F" stroke-width="3" fill="none" stroke-linecap="round" opacity=".55">
+              <path d="M113 34 L56 76"/><path d="M113 34 L150 76"/><path d="M187 34 L150 76"/><path d="M187 34 L244 76"/><path d="M113 34 Q150 66 187 34"/>
+            </g>
+            <rect x="106" y="26" width="14" height="62" rx="4" fill="#78350F"/><rect x="180" y="26" width="14" height="62" rx="4" fill="#78350F"/>
+            <rect x="44" y="76" width="212" height="12" rx="6" fill="#78350F"/>
+          
+</svg>

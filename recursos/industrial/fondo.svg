@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+<title>Fondo de Ingeniería Industrial: Líneas diagonales de flujo</title>
+<rect width="1920" height="1080" fill="#ECECEC"/>
+<defs><pattern id="p" width="48" height="48" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="48" height="4" fill="#3F3F46" opacity=".08"/><rect y="24" width="48" height="2" fill="#3F3F46" opacity=".06"/></pattern></defs><rect width="1920" height="1080" fill="url(#p)"/>
+</svg>

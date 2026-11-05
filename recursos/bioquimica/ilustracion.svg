@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 124" width="900" height="372">
+<title>Ingeniería Bioquímica: Matraz y molécula</title>
+<rect width="300" height="124" fill="#F8E8EF"/>
+
+            <defs><polygon id="hex7" points="0,-16 13.9,-8 13.9,8 0,16 -13.9,8 -13.9,-8"/></defs>
+            <g fill="none" stroke="#BE185D" stroke-width="2.5" opacity=".2" stroke-linejoin="round">
+              <use href="#hex7" transform="translate(30 30)"/><use href="#hex7" transform="translate(54 44)"/><use href="#hex7" transform="translate(30 58)"/>
+              <use href="#hex7" transform="translate(266 24)"/><use href="#hex7" transform="translate(242 38)"/><use href="#hex7" transform="translate(266 52)"/><use href="#hex7" transform="translate(242 94)"/><use href="#hex7" transform="translate(266 108)"/>
+            </g>
+            <rect x="124" y="16" width="44" height="9" rx="4.5" fill="#BE185D"/>
+            <path d="M130 24 H162 V54 L190 100 Q194 110 184 110 H106 Q96 110 100 100 L130 54 Z" fill="#fff"/>
+            <path d="M118 78 H174 L190 100 Q194 110 184 110 H106 Q96 110 100 100 Z" fill="#BE185D"/>
+            <circle cx="132" cy="94" r="4" fill="#fff" opacity=".8"/><circle cx="150" cy="86" r="3" fill="#fff" opacity=".8"/>
+            <g stroke="#BE185D" stroke-width="4" stroke-linecap="round" fill="none"><path d="M222 42 L252 64 L228 92"/></g>
+            <circle cx="222" cy="42" r="10" fill="#BE185D"/><circle cx="252" cy="64" r="8" fill="#BE185D" opacity=".55"/><circle cx="228" cy="92" r="9" fill="#BE185D"/>
+          
+</svg>

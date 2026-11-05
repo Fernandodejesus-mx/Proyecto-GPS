@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+<title>Fondo de Ingeniería Mecatrónica: Engranes y puntos</title>
+<rect width="1920" height="1080" fill="#F6E8F7"/>
+<defs><pattern id="p" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2.5" fill="#A21CAF" opacity=".18"/></pattern></defs><rect width="1920" height="1080" fill="url(#p)"/>
+<circle cx="750" cy="597" r="55" fill="none" stroke="#A21CAF" stroke-width="14" stroke-dasharray="14.40 14.40" opacity=".1"/><circle cx="750" cy="597" r="41" fill="none" stroke="#A21CAF" stroke-width="3" opacity=".1"/>
+<circle cx="417" cy="320" r="53" fill="none" stroke="#A21CAF" stroke-width="14" stroke-dasharray="15.14 15.14" opacity=".1"/><circle cx="417" cy="320" r="39" fill="none" stroke="#A21CAF" stroke-width="3" opacity=".1"/>
+<circle cx="1729" cy="388" r="66" fill="none" stroke="#A21CAF" stroke-width="14" stroke-dasharray="14.81 14.81" opacity=".1"/><circle cx="1729" cy="388" r="52" fill="none" stroke="#A21CAF" stroke-width="3" opacity=".1"/>
+<circle cx="797" cy="939" r="85" fill="none" stroke="#A21CAF" stroke-width="14" stroke-dasharray="14.05 14.05" opacity=".1"/><circle cx="797" cy="939" r="71" fill="none" stroke="#A21CAF" stroke-width="3" opacity=".1"/>
+<circle cx="1775" cy="362" r="62" fill="none" stroke="#A21CAF" stroke-width="14" stroke-dasharray="14.98 14.98" opacity=".1"/><circle cx="1775" cy="362" r="48" fill="none" stroke="#A21CAF" stroke-width="3" opacity=".1"/>
+<circle cx="1793" cy="480" r="44" fill="none" stroke="#A21CAF" stroke-width="14" stroke-dasharray="15.36 15.36" opacity=".1"/><circle cx="1793" cy="480" r="30" fill="none" stroke="#A21CAF" stroke-width="3" opacity=".1"/>
+<circle cx="259" cy="81" r="57" fill="none" stroke="#A21CAF" stroke-width="14" stroke-dasharray="14.92 14.92" opacity=".1"/><circle cx="259" cy="81" r="43" fill="none" stroke="#A21CAF" stroke-width="3" opacity=".1"/>
+<circle cx="1815" cy="1010" r="51" fill="none" stroke="#A21CAF" stroke-width="14" stroke-dasharray="14.57 14.57" opacity=".1"/><circle cx="1815" cy="1010" r="37" fill="none" stroke="#A21CAF" stroke-width="3" opacity=".1"/>
+<circle cx="1750" cy="651" r="49" fill="none" stroke="#A21CAF" stroke-width="14" stroke-dasharray="15.39 15.39" opacity=".1"/><circle cx="1750" cy="651" r="35" fill="none" stroke="#A21CAF" stroke-width="3" opacity=".1"/>
+</svg>

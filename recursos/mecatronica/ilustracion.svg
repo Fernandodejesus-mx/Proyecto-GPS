@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 124" width="900" height="372">
+<title>Ingeniería Mecatrónica: Brazo robótico y nodos</title>
+<rect width="300" height="124" fill="#F6E8F7"/>
+
+            <defs><pattern id="pt8" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="4" cy="4" r="1.5" fill="#A21CAF" opacity=".22"/></pattern></defs>
+            <rect width="300" height="124" fill="url(#pt8)"/>
+            <circle cx="40" cy="34" r="22" fill="none" stroke="#A21CAF" stroke-width="8" stroke-dasharray="6.9 6.9" opacity=".16"/>
+            <circle cx="262" cy="100" r="26" fill="none" stroke="#A21CAF" stroke-width="8" stroke-dasharray="8 8" opacity=".16"/>
+            <rect x="76" y="96" width="76" height="14" rx="7" fill="#A21CAF"/>
+            <path d="M114 90 L150 48" stroke="#A21CAF" stroke-width="14" stroke-linecap="round"/>
+            <path d="M150 48 L204 58" stroke="#A21CAF" stroke-width="12" stroke-linecap="round" opacity=".55"/>
+            <path d="M204 58 L226 44 M204 58 L226 74" stroke="#A21CAF" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="114" cy="90" r="8" fill="#fff" stroke="#A21CAF" stroke-width="4"/>
+            <circle cx="150" cy="48" r="7" fill="#fff" stroke="#A21CAF" stroke-width="4"/>
+            <circle cx="204" cy="58" r="5" fill="#fff" stroke="#A21CAF" stroke-width="3"/>
+            <circle cx="252" cy="34" r="6" fill="#A21CAF" opacity=".55"/><circle cx="268" cy="58" r="5" fill="#A21CAF"/>
+            <path d="M252 34 L268 58" stroke="#A21CAF" stroke-width="3" opacity=".55"/>
+          
+</svg>
