@@ -208,13 +208,14 @@
   }
 
   // ---------- navegación del sitio ----------
-  const navs = ["navExplorar", "navInicio", "navCuestionario"];
+  const navs = ["navExplorar", "navInicio", "navCuestionario", "navCarrerasRecomendadas"];
   function activarNav(id) {
     navs.forEach(n => $(n).classList.toggle("activo", n === id));
   }
 
   function abrir() {
     $("catalogo").classList.add("hidden");
+    $("carrerasRecomendadas").classList.add("hidden");
     $("detalle").classList.add("hidden");
     $("cuestionario").classList.remove("hidden");
     $("breadcrumb").textContent = "Cuestionario de intereses";

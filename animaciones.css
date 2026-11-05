@@ -1,0 +1,129 @@
+/* ===== T-103 · Animaciones y efectos sencillos =====
+   Solo se animan transform y opacity (y box-shadow al pasar el cursor)
+   para no afectar el rendimiento. Todo se desactiva con prefers-reduced-motion. */
+
+:root {
+  --t-rapida: .18s;
+  --t-media: .35s;
+  --curva: cubic-bezier(.22, .61, .36, 1);
+}
+
+@keyframes t103-entrada {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes t103-aparece {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes t103-desliza {
+  from { opacity: 0; transform: translateX(22px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes t103-pop {
+  0%   { opacity: 0; transform: scale(.6) rotate(-8deg); }
+  70%  { opacity: 1; transform: scale(1.08) rotate(2deg); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* 1 · Transición suave al cambiar de sección (catálogo, detalle, cuestionario, FAQ…) */
+main > section:not(.hidden) { animation: t103-entrada var(--t-media) var(--curva) backwards; }
+
+/* 2 · Tarjetas del catálogo: aparición escalonada */
+.career-card { animation: t103-entrada .45s var(--curva) backwards; }
+.career-card:nth-child(1) { animation-delay: .00s; }
+.career-card:nth-child(2) { animation-delay: .05s; }
+.career-card:nth-child(3) { animation-delay: .10s; }
+.career-card:nth-child(4) { animation-delay: .15s; }
+.career-card:nth-child(5) { animation-delay: .20s; }
+.career-card:nth-child(6) { animation-delay: .25s; }
+.career-card:nth-child(n+7) { animation-delay: .30s; }
+
+/* 3 · Tarjetas: ligero aumento y sombra con el color de la carrera */
+.career-card {
+  transition: transform var(--t-media) var(--curva), box-shadow var(--t-media) var(--curva);
+  will-change: auto;
+}
+.career-card:hover,
+.career-card:focus-within {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 16px 32px color-mix(in srgb, var(--c) 28%, transparent);
+}
+.career-card:active { transform: translateY(-1px) scale(1.005); }
+
+.card-art { overflow: hidden; height: 100%; }
+.card-ilustracion { transition: transform .6s var(--curva); }
+.career-card:hover .card-ilustracion { transform: scale(1.06); }
+
+/* 4 · Íconos con movimiento ligero */
+.card-icono { transition: transform var(--t-media) var(--curva); }
+.career-card:hover .card-icono { transform: translateY(-3px) rotate(-6deg) scale(1.08); }
+.hero-icono { animation: t103-pop .55s var(--curva) .1s backwards; }
+.hero-arte { animation: t103-desliza .5s var(--curva) .05s backwards; }
+.hero-arte img { transition: transform .6s var(--curva); }
+.hero-arte:hover img { transform: scale(1.05); }
+
+/* 5 · Botones y enlaces */
+.btn, .btn-primary, .nav-item, .detail-tab, .back-link, .open-career, .btn-link {
+  transition: transform var(--t-rapida) ease, background-color var(--t-rapida) ease,
+              border-color var(--t-rapida) ease, color var(--t-rapida) ease,
+              box-shadow var(--t-rapida) ease;
+}
+.btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(30, 41, 59, .12); }
+.btn-primary:hover:not(:disabled) { box-shadow: 0 8px 18px rgba(37, 99, 235, .32); }
+.btn:active:not(:disabled) { transform: translateY(0) scale(.97); box-shadow: none; }
+
+.open-career:hover { transform: translateX(5px); text-decoration: none; }
+.btn-link:hover { transform: translateX(5px); text-decoration: none; }
+.back-link:hover { transform: translateX(-4px); }
+.open-career:active, .btn-link:active, .back-link:active { transform: scale(.97); }
+
+.nav-item:hover { transform: translateX(3px); }
+.detail-tab:hover:not(.active) { transform: translateX(4px); }
+.detail-tab span { transition: transform var(--t-rapida) ease; }
+.detail-tab:hover span, .detail-tab.active span { transform: translateX(3px); }
+
+/* 6 · Contenido del detalle: el panel se desvanece al cambiar de pestaña */
+#panelDetalle.t103-cambio { animation: t103-aparece .35s ease backwards; }
+#panelDetalle.t103-cambio .semester,
+#panelDetalle.t103-cambio .area-box,
+#panelDetalle.t103-cambio .activity-card,
+#panelDetalle.t103-cambio .lista-perfil li {
+  animation: t103-entrada .4s var(--curva) backwards;
+}
+#panelDetalle.t103-cambio .semester:nth-child(2),
+#panelDetalle.t103-cambio .area-box:nth-child(2),
+#panelDetalle.t103-cambio .activity-card:nth-child(2),
+#panelDetalle.t103-cambio .lista-perfil li:nth-child(2) { animation-delay: .06s; }
+#panelDetalle.t103-cambio .semester:nth-child(3),
+#panelDetalle.t103-cambio .area-box:nth-child(3),
+#panelDetalle.t103-cambio .activity-card:nth-child(3),
+#panelDetalle.t103-cambio .lista-perfil li:nth-child(3) { animation-delay: .12s; }
+#panelDetalle.t103-cambio .semester:nth-child(n+4),
+#panelDetalle.t103-cambio .area-box:nth-child(n+4),
+#panelDetalle.t103-cambio .activity-card:nth-child(n+4),
+#panelDetalle.t103-cambio .lista-perfil li:nth-child(n+4) { animation-delay: .18s; }
+
+.semester, .area-box, .activity-card {
+  transition: transform var(--t-rapida) ease, box-shadow var(--t-rapida) ease;
+}
+.semester:hover, .area-box:hover, .activity-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(30, 41, 59, .10);
+}
+
+/* Foco visible y coherente en botones */
+.btn:focus-visible, .nav-item:focus-visible, .detail-tab:focus-visible, .back-link:focus-visible {
+  outline: 3px solid #93c5fd; outline-offset: 2px;
+}
+
+/* Accesibilidad: sin movimiento si el sistema lo pide */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

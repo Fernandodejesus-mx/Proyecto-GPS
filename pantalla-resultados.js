@@ -17,7 +17,18 @@
 
 (function () {
   const $ = id => document.getElementById(id);
-  const navs = ["navExplorar", "navInicio", "navCuestionario"];
+  const navs = ["navExplorar", "navInicio", "navCuestionario", "navCarrerasRecomendadas"];
+
+  // Mapeo: áreas del cuestionario (7) -> resultados granulares (14)
+  const AREA_TO_RESULTADO = {
+    "AP-01": 1,  // Tecnología y sistemas -> Desarrollo de software
+    "AP-02": 9,  // Gestión y negocios -> Administración y gestión
+    "AP-03": 5,  // Industria y procesos -> Optimización de procesos productivos
+    "AP-04": 3,  // Electrónica y automatización -> Automatización y control de procesos
+    "AP-05": 10, // Ciencias y alimentos -> Análisis químico y control de calidad
+    "AP-06": 8,  // Construcción e infraestructura -> Construcción e infraestructura
+    "AP-07": 12  // Gastronomía y servicios -> Innovación culinaria y servicios gastronómicos
+  };
 
   function esc(t) {
     return String(t).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -90,6 +101,7 @@
     render(respuestas);
     $("cuestionario").classList.add("hidden");
     $("catalogo").classList.add("hidden");
+    $("carrerasRecomendadas").classList.add("hidden");
     $("detalle").classList.add("hidden");
     $("resultados").classList.remove("hidden");
     $("breadcrumb").textContent = "Resultados del cuestionario";
@@ -113,7 +125,17 @@
   document.addEventListener("cuestionario:finalizado", e => mostrar(e.detail.respuestas));
 
   // Botón "Ver mis resultados" de la pantalla "Cuestionario completado"
-  $("btnQuizResultados").addEventListener("click", () => mostrar(Cuestionario.obtenerRespuestas()));
+  // Redirige a la nueva pantalla Carreras Recomendadas con el resultado mapeado
+  $("btnQuizResultados").addEventListener("click", () => {
+    const respuestas = Cuestionario.obtenerRespuestas();
+    const resultadoId = obtenerResultadoPrincipal(respuestas);
+    if (resultadoId) {
+      window.location.href = `index.html?resultado=${resultadoId}`;
+    } else {
+      // Fallback: muestra pantalla de resultados original si no hay mapeo
+      mostrar(respuestas);
+    }
+  });
 
   // Acciones de la pantalla de resultados
   $("btnResRevisar").addEventListener("click", () => {
@@ -142,5 +164,5 @@
   });
 
   // Al usar el menú lateral o el botón "Volver", se cierra la pantalla de resultados
-  ["navExplorar", "navInicio", "navCuestionario", "btnVolver"].forEach(id => $(id).addEventListener("click", ocultar));
+  ["navExplorar", "navInicio", "navCuestionario", "navCarrerasRecomendadas", "btnVolver"].forEach(id => $(id).addEventListener("click", ocultar));
 })();

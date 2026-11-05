@@ -253,6 +253,12 @@ const carreras = [
 
 ];
 
+// T-101 · carpeta de recursos y variables CSS (--carrera-<slug>) de cada carrera (T-98 / T-100)
+const CARRERA_SLUG = {
+  1: "sistemas", 2: "industrial", 3: "electromecanica", 4: "gestion-empresarial", 5: "electronica",
+  6: "industrias-alimentarias", 7: "bioquimica", 8: "mecatronica", 9: "civil", 10: "gastronomia"
+};
+
 const $ = id => document.getElementById(id);
 let carreraActual = null;
 
@@ -266,17 +272,25 @@ function renderCatalogo() {
     return matchText && matchArea;
   });
 
-  $("listaCarreras").innerHTML = resultados.map((c, i) => `
-    <article class="career-card">
-      <div class="card-top">
-        <span class="pill">${c.area}</span>
-        <span class="number">${String(i + 1).padStart(2, "0")}</span>
+  $("listaCarreras").innerHTML = resultados.map((c, i) => {
+    const slug = CARRERA_SLUG[c.id];
+    return `
+    <article class="career-card carrera-${slug}">
+      <div class="card-media">
+        <div class="card-art"><img class="card-ilustracion" src="recursos/${slug}/ilustracion.svg" alt="" loading="lazy"></div>
+        <span class="card-icono"><img src="recursos/${slug}/icono-blanco.svg" alt="" width="28" height="28"></span>
       </div>
-      <h3>${c.nombre}</h3>
-      <p>${c.resumen}</p>
-      <button class="open-career" onclick="abrirCarrera(${c.id})">Conocer esta carrera →</button>
-    </article>
-  `).join("");
+      <div class="card-body">
+        <div class="card-top">
+          <span class="pill">${c.area}</span>
+          <span class="number">${String(i + 1).padStart(2, "0")}</span>
+        </div>
+        <h3>${c.nombre}</h3>
+        <p>${c.resumen}</p>
+        <button class="open-career" onclick="abrirCarrera(${c.id})">Conocer esta carrera →</button>
+      </div>
+    </article>`;
+  }).join("");
 
   $("contador").textContent = `${resultados.length} resultado${resultados.length === 1 ? "" : "s"}`;
   $("sinResultados").classList.toggle("hidden", resultados.length > 0);
@@ -294,7 +308,15 @@ function abrirCarrera(id) {
   $("detalleArea").textContent = c.area;
   $("detalleNombre").textContent = c.nombre;
   $("detalleResumen").textContent = c.resumen;
-  $("careerCode").textContent = `0${c.id}`;
+  $("careerCode").textContent = String(c.id).padStart(2, "0");
+
+  // T-102 · identidad visual de la carrera (color, ícono e ilustración)
+  const slug = CARRERA_SLUG[c.id];
+  $("detalle").classList.forEach(k => { if (k.startsWith("carrera-")) $("detalle").classList.remove(k); });
+  $("detalle").classList.add(`carrera-${slug}`);
+  $("detalleIcono").src = `recursos/${slug}/icono-blanco.svg`;
+  $("detalleIlustracion").src = `recursos/${slug}/ilustracion.svg`;
+  $("detalleIlustracion").alt = `Ilustración de ${c.nombre}`;
 
   document.querySelectorAll(".detail-tab").forEach(b => b.classList.remove("active"));
   document.querySelector('[data-tab="info"]').classList.add("active");
@@ -303,13 +325,19 @@ function abrirCarrera(id) {
 }
 
 function renderPanel(c, tab) {
+  // T-103 · reinicia la animación de entrada del panel en cada cambio de pestaña
+  const panel = $("panelDetalle");
+  panel.classList.remove("t103-cambio");
+  void panel.offsetWidth;
+  panel.classList.add("t103-cambio");
+
   if (tab === "info") {
     $("panelDetalle").innerHTML = `
       <p class="eyebrow">HU-02 · INFORMACIÓN GENERAL</p>
       <h2>Conoce la carrera</h2>
-      <p>${c.info}</p>
+      <p class="info-destacado">${c.info}</p>
       <h3>¿Qué encontrarás aquí?</h3>
-      <ul>
+      <ul class="lista-check">
         <li>Descripción general de la carrera.</li>
         <li>Área a la que pertenece.</li>
         <li>Acceso directo al plan de estudios.</li>
@@ -328,7 +356,7 @@ function renderPanel(c, tab) {
       <div class="semester-grid">
         ${c.plan.map(s => `
           <div class="semester">
-            <h4>${s[0]}</h4>
+            <h4><span class="sem-num">${(s[0].match(/^\d+/) || [""])[0]}</span>${s[0].replace(/^\d+\S*\s*/, "").replace(/^./, ch => ch.toUpperCase())}</h4>
             <ul>${s[1].map(m => `<li>${m}</li>`).join("")}</ul>
           </div>
         `).join("")}
@@ -341,7 +369,7 @@ function renderPanel(c, tab) {
       <p class="eyebrow">HU-04 · PERFIL DE EGRESO</p>
       <h2>¿Qué desarrolla el egresado?</h2>
       <p>La información se presenta de forma organizada para facilitar su consulta.</p>
-      <ul>${c.perfil.map(x => `<li>${x}</li>`).join("")}</ul>
+      <ul class="lista-check lista-perfil">${c.perfil.map(x => `<li>${x}</li>`).join("")}</ul>
     `;
   }
 
@@ -411,8 +439,17 @@ $("navInicio").addEventListener("click", () => {
 
 $("navExplorar").addEventListener("click", () => {
   $("detalle").classList.add("hidden");
+  $("carrerasRecomendadas").classList.add("hidden");
   $("catalogo").classList.remove("hidden");
   $("breadcrumb").textContent = "Explorar carreras";
+});
+
+$("navCarrerasRecomendadas").addEventListener("click", () => {
+  $("detalle").classList.add("hidden");
+  $("catalogo").classList.add("hidden");
+  $("carrerasRecomendadas").classList.remove("hidden");
+  $("breadcrumb").textContent = "Carreras recomendadas";
+  window.scrollTo(0, 0);
 });
 
 $("buscador").addEventListener("input", renderCatalogo);
