@@ -136,3 +136,46 @@
   .faq-respuesta { padding-right: 20px; }
   .faq-item summary { padding: 14px 16px; }
 }
+
+/* ===== T-112 · Preguntas frecuentes (pantallas pequeñas) ===== */
+
+/* Hero más compacto y apilado en celular */
+@media (max-width: 480px) {
+  .faq-hero { flex-direction: column; align-items: stretch; text-align: center; padding: 24px 20px; gap: 16px; }
+  .faq-hero h1 { font-size: 22px; line-height: 1.2; margin: 0 0 8px; text-align: center; }
+  .faq-hero .lead { font-size: 13px; line-height: 1.5; margin: 0; text-align: center; }
+  .faq-total { font-size: 12px; padding: 8px 16px; margin: 8px auto 0; white-space: normal; text-align: center; }
+}
+
+/* Filtros por tema (chips) más fáciles de tocar en celular */
+@media (max-width: 480px) {
+  .faq-filtros { gap: 8px; margin: 16px 0 8px; justify-content: center; }
+  .faq-chip { padding: 8px 14px; font-size: 12px; border-radius: 10px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+  .faq-chip[aria-pressed="true"] { font-weight: 700; }
+}
+
+/* Grupos de temas con menos espaciado en celular */
+@media (max-width: 480px) {
+  .faq-grupo { margin-top: 20px; }
+  .faq-grupo-cabecera { gap: 10px; margin-bottom: 10px; }
+  .faq-tema { font-size: 12px; padding: 6px 12px; }
+  .faq-cuenta { font-size: 11px; }
+}
+
+/* Desplegables: summary y respuesta más legibles en celular */
+@media (max-width: 480px) {
+  .faq-item { border-radius: 12px; }
+  .faq-item summary { padding: 12px 14px; font-size: 14px; line-height: 1.4; gap: 10px; border-radius: 12px; }
+  .faq-item summary:hover { background: #f8fbff; }
+  .faq-icono { width: 26px; height: 26px; font-size: 16px; border-radius: 8px; }
+  .faq-respuesta { padding: 0 20px 16px 20px; font-size: 13px; line-height: 1.6; margin: 0; }
+  .faq-respuesta a { font-size: 13px; word-break: break-word; }
+}
+
+/* Estado vacío más claro en celular */
+@media (max-width: 480px) {
+  #faqVacio { padding: 40px 16px; text-align: center; }
+  #faqVacio > div { font-size: 32px; margin-bottom: 12px; }
+  #faqVacio h3 { font-size: 18px; margin: 0 0 6px; }
+  #faqVacio p { font-size: 13px; line-height: 1.5; margin: 0; max-width: 280px; margin-left: auto; margin-right: auto; }
+}

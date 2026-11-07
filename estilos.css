@@ -561,6 +561,130 @@ footer {
   footer { flex-direction: column; gap: 5px; }
 }
 
+/* ===== T-108 · Mejoras específicas para pantallas pequeñas ===== */
+
+/* Sidebar: mejor toque en celular, ítems con suficiente área táctil */
+@media (max-width: 375px) {
+  .sidebar { width: 68px; padding: 16px 8px; }
+  .nav-item { padding: 12px 8px; min-height: 48px; }
+  .brand-mark { width: 40px; height: 40px; }
+  .app { margin-left: 68px; }
+}
+
+/* Catálogo: tarjetas legibles y sin desbordamiento en celular */
+@media (max-width: 480px) {
+  .career-card h3 { font-size: 18px; }
+  .career-card p { font-size: 13px; line-height: 1.4; min-height: 48px; }
+  .card-body { padding: 24px 16px 18px; }
+  .open-career { font-size: 13px; }
+
+  /* Buscador y filtro apilados y anchos completos */
+  .search-panel { padding: 18px 20px; }
+  .controls { flex-direction: column; align-items: stretch; gap: 12px; }
+  .search-box { max-width: none; width: 100%; }
+  .controls select { width: 100%; height: 48px; }
+  .search-box input { font-size: 14px; }
+}
+
+/* Detalle de carrera: hero sin ilustración en móvil pequeño */
+@media (max-width: 480px) {
+  .career-hero { flex-direction: column; align-items: stretch; text-align: center; padding: 24px 20px; }
+  .career-hero h1 { font-size: 24px; text-align: center; }
+  .career-hero p { text-align: center; font-size: 14px; }
+  .hero-arte { display: none; }
+  .detail-layout { grid-template-columns: 1fr; gap: 16px; margin-top: 16px; }
+  .detail-menu { padding: 12px; }
+  .detail-content { padding: 20px 16px; }
+}
+
+/* Cuestionario: opciones de respuesta en 1 columna en celular */
+@media (max-width: 480px) {
+  .quiz-options { grid-template-columns: 1fr; }
+  .quiz-q { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .quiz-num { align-self: flex-start; }
+  .quiz-actions { flex-direction: column; gap: 12px; }
+  .quiz-actions .btn { width: 100%; }
+  .quiz-hint { text-align: left; order: 2; }
+}
+
+/* Carreras recomendadas: selector y controles apilados en celular */
+@media (max-width: 480px) {
+  .cr-selector-section { padding: 16px; margin-bottom: 16px; }
+  .cr-resultado-select { padding: 12px 14px; font-size: 14px; }
+  .cr-resultado-card { padding: 16px; margin-bottom: 16px; }
+  .cr-resultado-card-header { gap: 12px; }
+  .cr-resultado-card-icon { width: 48px; height: 48px; font-size: 24px; }
+  .cr-resultado-card-header h2 { font-size: 20px; }
+  .cr-sort-controls { padding: 12px 16px; flex-direction: column; align-items: stretch; gap: 10px; }
+  .cr-sort-select { min-width: 100%; }
+  .cr-carrera-card { padding: 16px; }
+  .cr-carrera-nombre { font-size: 16px; }
+  .cr-carrera-explicacion { font-size: 13px; line-height: 1.5; }
+  .cr-btn-detalle { width: 100%; justify-content: center; padding: 10px 0; font-size: 13px; }
+  .cr-main-content { grid-template-columns: 1fr; gap: 20px; }
+  .cr-side-panel { position: static; height: auto; max-height: none; box-shadow: none; border: 0; padding-top: 0; }
+}
+
+/* Preguntas frecuentes: filtros envueltos en celular */
+@media (max-width: 480px) {
+  #faqFiltros { flex-wrap: wrap; gap: 8px; }
+}
+
+/* ===== T-109 · Detalle de la carrera y menú de secciones (pantallas pequeñas) ===== */
+
+/* Detalle: hero más legible en móvil */
+@media (max-width: 480px) {
+  .career-hero { padding: 20px 18px; gap: 16px; }
+  .career-hero h1 { font-size: 22px; line-height: 1.2; margin: 12px 0 6px; }
+  .career-hero p { font-size: 13px; line-height: 1.5; margin: 0; }
+  .hero-etiquetas { gap: 8px; }
+  .hero-icono { width: 40px; height: 40px; }
+  .career-code { font-size: 11px; padding: 2px 8px; right: 6px; bottom: 6px; }
+}
+
+/* Detalle: botón volver más accesible en móvil */
+@media (max-width: 480px) {
+  #btnVolver { padding: 10px 0; font-size: 14px; margin-bottom: 16px; display: inline-flex; align-items: center; gap: 6px; }
+}
+
+/* Menú de secciones: pestañas con mejor área táctil y legibilidad en móvil */
+@media (max-width: 480px) {
+  .detail-menu { padding: 10px; border-radius: 12px; }
+  .detail-menu > p { font-size: 11px; margin: 4px 6px 8px; letter-spacing: 1.2px; }
+  .detail-tab { padding: 14px 12px; font-size: 13px; min-height: 52px; border-radius: 10px; gap: 10px; }
+  .detail-tab.active { box-shadow: inset 4px 0 0 var(--c); }
+  .detail-tab:hover:not(.active) { background: #f4f6fa; }
+}
+
+/* Detalle: contenido con mejor espaciado en móvil */
+@media (max-width: 480px) {
+  .detail-layout { gap: 12px; margin-top: 12px; }
+  .detail-content { padding: 16px 14px; min-height: auto; border-radius: 12px; border-top-width: 4px; }
+  .detail-content h2 { font-size: 18px; margin: 0 0 10px; }
+  .detail-content h3 { font-size: 15px; margin: 14px 0 6px; }
+  .detail-content p { font-size: 13px; line-height: 1.55; margin: 0 0 10px; }
+  .info-destacado { padding: 14px 16px; font-size: 13px; line-height: 1.6; border-radius: 0 10px 10px 0; }
+}
+
+/* Listas de verificación en detalle: más legibles en móvil */
+@media (max-width: 480px) {
+  .lista-check li { padding-left: 30px; margin: 9px 0; font-size: 13px; line-height: 1.5; }
+  .lista-check li::before { width: 20px; height: 20px; font-size: 11px; top: 0; }
+  .lista-perfil li { padding: 12px 14px 12px 42px; font-size: 13px; line-height: 1.5; margin: 8px 0; }
+  .lista-perfil li::before { left: 12px; top: 10px; width: 20px; height: 20px; font-size: 11px; }
+}
+
+/* Semestres y campo laboral: tarjetas más compactas en móvil */
+@media (max-width: 480px) {
+  .semester { padding: 14px; gap: 8px; }
+  .semester h4 { font-size: 13px; gap: 6px; }
+  .sem-num { min-width: 24px; height: 24px; font-size: 11px; }
+  .semester ul { font-size: 13px; margin: 6px 0 0; padding-left: 16px; }
+  .area-box { padding: 14px; }
+  .area-box strong { font-size: 14px; }
+  .area-box p { font-size: 13px; margin: 4px 0 0; }
+}
+
 /* ===== HU-06 · Actividades (T-44) ===== */
 .activity-list { display: grid; gap: 13px; margin-top: 20px; }
 
@@ -611,6 +735,42 @@ footer {
 }
 .btn-link:hover { text-decoration: underline; }
 .detail-content .btn-link { color: var(--c); }
+
+/* ===== T-110 · Plan de estudios, perfil de egreso, campo laboral y actividades (pantallas pequeñas) ===== */
+
+/* Plan de estudios: semestres en una columna, más compactos en móvil */
+@media (max-width: 480px) {
+  .semester-grid { grid-template-columns: 1fr; gap: 10px; }
+  .semester { padding: 12px 14px; gap: 6px; border-radius: 10px; border-top-width: 4px; }
+  .semester h4 { font-size: 13px; gap: 6px; margin: 0 0 6px; }
+  .sem-num { min-width: 24px; height: 24px; font-size: 11px; }
+  .semester ul { font-size: 13px; line-height: 1.5; margin: 4px 0 0; padding-left: 16px; }
+  .semester li { margin: 3px 0; }
+}
+
+/* Perfil de egreso: tarjetas más cómodas para tocar en móvil */
+@media (max-width: 480px) {
+  .lista-perfil li { padding: 12px 14px 12px 42px; font-size: 13px; line-height: 1.5; margin: 8px 0; border-radius: 10px; }
+  .lista-perfil li::before { left: 12px; top: 10px; width: 20px; height: 20px; font-size: 11px; }
+}
+
+/* Campo laboral: área-box en una sola columna y más legible en móvil */
+@media (max-width: 480px) {
+  .area-grid { grid-template-columns: 1fr; gap: 10px; }
+  .area-box { padding: 14px; border-radius: 10px; border-left-width: 4px; }
+  .area-box strong { font-size: 14px; margin-bottom: 4px; display: block; }
+  .area-box p { font-size: 13px; line-height: 1.5; margin: 0; }
+}
+
+/* Actividades: tarjetas apiladas, número más grande y texto legible en móvil */
+@media (max-width: 480px) {
+  .activity-list { gap: 10px; margin-top: 16px; }
+  .activity-card { flex-direction: column; gap: 10px; padding: 16px; border-radius: 12px; }
+  .activity-num { flex: 0 0 40px; height: 40px; font-size: 14px; border-radius: 10px; align-self: flex-start; }
+  .activity-card h4 { font-size: 15px; margin: 0 0 6px; }
+  .activity-card p { font-size: 13px; line-height: 1.55; margin: 0 0 8px; }
+  .aspect-tag { font-size: 11px; padding: 4px 10px; margin-top: 4px; display: inline-flex; }
+}
 
 /* ===== HU-08 · Cuestionario de intereses (T-55) ===== */
 .quiz-hero {
@@ -912,3 +1072,150 @@ footer {
 }
 
 @media (max-width: 1100px) { .hero-arte { flex-basis: 240px; } }
+
+/* ===== T-111 · Cuestionario, resultados y carreras recomendadas (pantallas pequeñas) ===== */
+
+/* Cuestionario: hero y progreso más compactos en móvil */
+@media (max-width: 480px) {
+  .quiz-hero { padding: 24px 20px; gap: 20px; flex-direction: column; align-items: stretch; text-align: center; }
+  .quiz-hero h1 { font-size: 22px; line-height: 1.2; margin: 0 0 8px; text-align: center; }
+  .quiz-hero .lead { font-size: 14px; line-height: 1.5; margin: 0; text-align: center; }
+  .quiz-progress-panel { flex: none; padding: 14px 16px; gap: 4px; }
+  .quiz-progress-panel strong { font-size: 15px; }
+  .quiz-progress-panel small { font-size: 11px; }
+  .quiz-steps { gap: 4px; margin: 8px 0 6px; }
+  .quiz-step { height: 6px; }
+
+  /* Área y progreso de pregunta */
+  .quiz-area-bar { margin: 20px 0 12px; gap: 10px; }
+  .quiz-area-pill { font-size: 12px; padding: 4px 10px; }
+  .quiz-rango { font-size: 12px; }
+
+  /* Tarjetas de pregunta más compactas */
+  .quiz-card { padding: 16px 18px 18px; border-radius: 14px; }
+  .quiz-q { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 14px; }
+  .quiz-num { flex: none; width: 32px; height: 32px; font-size: 12px; }
+  .quiz-q h3 { font-size: 15px; line-height: 1.4; }
+
+  /* Opciones de respuesta en 1 columna, más grandes para tocar */
+  .quiz-options { grid-template-columns: 1fr; gap: 8px; }
+  .quiz-option span { min-height: 48px; padding: 10px 12px; font-size: 13px; border-radius: 10px; }
+
+  /* Avisos y acciones */
+  .quiz-aviso { font-size: 13px; padding: 12px 16px; margin: 14px 0 0; }
+  .quiz-actions { flex-direction: column; gap: 10px; margin-top: 16px; }
+  .quiz-actions .btn { width: 100%; padding: 12px 0; font-size: 14px; }
+  .quiz-hint { text-align: left; order: 2; font-size: 12px; }
+
+  /* Pantalla final del cuestionario */
+  .quiz-final { padding: 40px 20px; margin-top: 20px; border-radius: 18px; }
+  .quiz-final .check { width: 56px; height: 56px; font-size: 26px; margin: 0 auto 14px; }
+  .quiz-final h2 { font-size: 20px; margin: 0 0 8px; }
+  .quiz-final p { font-size: 13px; margin: 0 0 20px; }
+  .quiz-final-actions { flex-direction: column; gap: 10px; }
+  .quiz-final-actions .btn { width: 100%; padding: 12px 0; font-size: 14px; }
+}
+
+/* Resultados del cuestionario: banner, tarjetas y tabla adaptados en móvil */
+@media (max-width: 480px) {
+  .quiz-banner { flex-direction: column; align-items: stretch; gap: 14px; padding: 20px 22px; }
+  .quiz-banner h2 { font-size: 20px; text-align: center; margin: 0 0 6px; }
+  .quiz-banner p { font-size: 13px; text-align: center; margin: 0; }
+  .quiz-banner .btn { flex: none; width: 100%; }
+
+  .result-grid { grid-template-columns: 1fr; gap: 12px; }
+  .result-card { padding: 18px; border-radius: 16px; }
+  .result-card h3 { font-size: 16px; margin: 0 0 6px; }
+  .result-card p { font-size: 13px; line-height: 1.5; margin: 10px 0 0; }
+
+  .result-card-head { gap: 10px; margin-bottom: 10px; }
+  .result-rank { width: 30px; height: 30px; font-size: 13px; }
+  .result-pct { font-size: 20px; }
+
+  .result-bar { height: 8px; }
+  .result-label { font-size: 11px !important; margin-top: 10px !important; }
+
+  .result-careers { gap: 6px; margin-top: 8px; }
+  .result-career { padding: 8px 12px; font-size: 12px; }
+
+  .result-table { padding: 8px 14px; border-radius: 14px; }
+  .result-row { gap: 10px; padding: 10px 0; }
+  .result-row-name { font-size: 13px; }
+  .result-row-pct { font-size: 13px; }
+
+  .result-disclaimer { font-size: 11px; margin: 12px 0 0; }
+  .result-actions { margin: 20px 0 8px; }
+  .result-actions .btn { width: 100%; padding: 12px 0; font-size: 14px; }
+}
+
+/* Carreras recomendadas: selector, tarjetas y panel lateral adaptados en móvil */
+@media (max-width: 480px) {
+  .cr-selector-section { padding: 16px; margin-bottom: 16px; }
+  .cr-selector-label { font-size: 13px; margin-bottom: 10px; }
+  .cr-resultado-select { padding: 12px 14px; font-size: 14px; }
+
+  .cr-resultado-card { padding: 16px; margin-bottom: 16px; border-radius: 14px; }
+  .cr-resultado-card-header { gap: 12px; margin-bottom: 12px; }
+  .cr-resultado-card-icon { width: 48px; height: 48px; font-size: 24px; }
+  .cr-resultado-card-header h2 { font-size: 20px; margin: 0 0 4px; }
+  .cr-resultado-card-area { font-size: 12px; }
+  .cr-resultado-card-descripcion { font-size: 13px; line-height: 1.5; margin: 0; }
+
+  .cr-sort-controls { padding: 12px 16px; flex-direction: column; align-items: stretch; gap: 10px; border-radius: 12px; }
+  .cr-sort-label { font-size: 13px; white-space: normal; }
+  .cr-sort-select { min-width: 100%; font-size: 14px; }
+
+  .cr-carreras-grid { gap: 12px; }
+  .cr-carrera-card { padding: 16px; border-radius: 14px; }
+  .cr-card-header { gap: 10px; margin-bottom: 10px; }
+  .cr-carrera-icon { width: 44px; height: 44px; font-size: 22px; }
+  .cr-carrera-nombre { font-size: 16px; margin: 0 0 4px; white-space: normal; overflow: visible; text-overflow: unset; }
+  .cr-carrera-clave { font-size: 11px; padding: 3px 8px; }
+  .cr-nivel-relacion { font-size: 11px; padding: 4px 10px; margin-top: 6px; gap: 5px; }
+  .cr-nivel-relacion svg { width: 10px; height: 10px; }
+  .cr-carrera-explicacion { font-size: 13px; line-height: 1.5; margin: 0 0 12px; }
+
+  .cr-card-footer { padding-top: 10px; }
+  .cr-btn-detalle { width: 100%; justify-content: center; padding: 10px 0; font-size: 13px; }
+
+  .cr-empty-state h3 { font-size: 18px; }
+  .cr-empty-state p { font-size: 13px; line-height: 1.5; max-width: none; }
+
+  /* Panel lateral: en móvil se muestra como sección normal */
+  .cr-side-panel { position: static; height: auto; max-height: none; box-shadow: none; border: 0; padding-top: 0; border-radius: 0; }
+  .cr-side-panel-header { padding: 12px 16px; }
+  .cr-side-panel-header h2 { font-size: 17px; }
+  .cr-side-panel-content { padding: 16px; }
+  .cr-resultado-icon { width: 48px; height: 48px; font-size: 24px; margin-bottom: 10px; }
+  .cr-resultado-detail h3 { font-size: 18px; margin: 0 0 4px; }
+  .cr-resultado-area { font-size: 12px; margin: 0 0 10px; }
+  .cr-resultado-descripcion { font-size: 13px; line-height: 1.5; margin: 0 0 14px; padding-bottom: 12px; }
+
+  .cr-resumen-carreras h4 { font-size: 12px; margin: 0 0 10px; }
+  .cr-resumen-stats { gap: 6px; margin-bottom: 10px; }
+  .cr-stat-badge { font-size: 11px; padding: 4px 8px; gap: 4px; }
+  .cr-resumen-lista { gap: 6px; max-height: none; }
+  .cr-resumen-lista li { padding: 8px 12px; font-size: 12px; border-radius: 10px; }
+  .cr-res-nombre { font-size: 12px; }
+
+  .cr-empty-side-panel p { font-size: 13px; line-height: 1.5; max-width: none; }
+
+  /* Modal de detalle de carrera */
+  .cr-modal-overlay { padding: 16px; }
+  .cr-modal { max-width: 100%; border-radius: 16px; }
+  .cr-modal-header { padding: 16px 20px; }
+  .cr-modal-header h2 { font-size: 18px; }
+  .cr-modal-header-info { gap: 12px; margin-bottom: 16px; padding-bottom: 16px; }
+  .cr-modal-carrera-icon { width: 52px; height: 52px; font-size: 26px; }
+  .cr-modal-carrera-info h3 { font-size: 18px; margin: 0 0 4px; }
+  .cr-modal-clave { font-size: 12px; margin: 0 0 8px; }
+  .cr-modal-nivel { font-size: 12px; padding: 5px 10px; gap: 5px; }
+  .cr-modal-explicacion { margin-bottom: 16px; }
+  .cr-modal-explicacion h4 { font-size: 11px; margin: 0 0 6px; }
+  .cr-modal-explicacion p { font-size: 13px; line-height: 1.6; margin: 0; }
+  .cr-modal-resultado-info { padding: 14px; border-radius: 10px; }
+  .cr-modal-resultado-info h4 { font-size: 11px; margin: 0 0 6px; }
+  .cr-modal-resultado-info p { font-size: 13px; line-height: 1.6; margin: 0; }
+  .cr-btn-close-modal { width: 34px; height: 34px; }
+  .cr-btn-close-panel { width: 34px; height: 34px; }
+}
