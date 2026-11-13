@@ -1,0 +1,1 @@
+Archivos de la base del perfil visual (Sprint 4). Gloria los copia a la raíz del repositorio en T-123, junto a index.html.
