@@ -364,7 +364,12 @@ function renderPanel(c, tab) {
     `;
   }
 
-  if (tab === "perfil") {
+    if (tab === "perfil") {
+    abrirVisorPerfil(c);
+    return;
+  }
+
+  if (tab === "perfil-anterior") {
     $("panelDetalle").innerHTML = `
       <p class="eyebrow">HU-04 · PERFIL DE EGRESO</p>
       <h2>¿Qué desarrolla el egresado?</h2>
