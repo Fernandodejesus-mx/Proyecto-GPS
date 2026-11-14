@@ -1,1 +1,5 @@
-/* HU-39 · Visor del perfil (archivo de Gloria). Prefijo .visor- */
+.visor-lista h2 { margin: 4px 0 10px; }
+.visor-item { border: 1px solid var(--line, #e5e9f0); border-radius: 14px; padding: 14px 16px; margin: 12px 0; background: #fff; }
+.visor-item h3 { margin: 0 0 2px; color: var(--c, #2563eb); }
+.visor-item-nombre { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--muted, #687386); text-transform: uppercase; }
+.visor-sec { background: var(--c, #2563eb); color: #fff; }
