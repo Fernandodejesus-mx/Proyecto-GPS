@@ -33,3 +33,22 @@ function mostrarPortada() {
   document.getElementById("visorEmpezar").addEventListener("click", () => irAHistoria(0));
   document.getElementById("visorLista").addEventListener("click", () => mostrarLista());
 }
+
+// Alternativa accesible: todos los apartados con su texto oficial completo, sin gestos ni animaciones
+function mostrarLista() {
+  modoVisor = "lista";
+  const aps = obtenerApartados(carreraVisor.id);
+  visorEl().innerHTML = `
+    <div class="visor-lista">
+      <p class="visor-etiqueta">PERFIL DE LA CARRERA · LISTA</p>
+      <h2>${escaparPerfil(carreraVisor.nombre)}</h2>
+      ${aps.map(ap => `
+        <section class="visor-item">
+          <h3><span aria-hidden="true">${ap.icono}</span> ${escaparPerfil(ap.titular)}</h3>
+          <p class="visor-item-nombre">${escaparPerfil(ap.nombre)}</p>
+          <div class="carta-texto">${textoApartadoHTML(ap)}</div>
+        </section>`).join("")}
+      <button id="visorHistorias" type="button" class="visor-sec">Ver como historias</button>
+    </div>`;
+  document.getElementById("visorHistorias").addEventListener("click", mostrarPortada);
+}
