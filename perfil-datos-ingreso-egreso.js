@@ -126,9 +126,98 @@ const perfilIngresoEgreso = {
       ] }
     ]
   },
-  4: { ingreso: [], egreso: [] },   // Gestión Empresarial
-  5: { ingreso: [], egreso: [] },   // Electrónica
-  6: { ingreso: [], egreso: [] },   // Industrias Alimentarias
+    4: {   // Gestión Empresarial
+    ingreso: [
+      { t: "p", x: "Los aspirantes a estudiar este programa deberán tener un razonamiento crítico y matemático, ser analíticos, precisos, estructurados, organizados y solucionador de problemar. Además de mostrar interés por el emprendedurismo." },
+      { t: "ul", x: [
+        "Interesado en cualquiera de los siguientes campos profesionales:"
+      ] },
+      { t: "h", x: "Las Finanzas y la Administración" },
+      { t: "p", x: "Mejora los procesos administrativos y productivos de una empresa del cualquier sector/industria (transformación, gobierno, servicios, salud, educación)." },
+      { t: "ul", x: [
+        "Crear y dirigir empresas del ramo industrial o de servicios.",
+        "Gestionar los procesos productivos y administrativos de una empresa familiar."
+      ] }
+    ],
+    egreso: [
+      { t: "p", x: "Desarrollar y aplicar habilidades directivas y la ingeniería en el diseño, creación, gestión, desarrollo, fortalecimiento e innovación de las organizaciones, con una orientación sistémica y sustentable para la toma de decisiones en forma efectiva" },
+      { t: "p", x: "Diseñar e innovar estructuras administrativas y procesos, con base en las necesidades de las organizaciones para competir eficientemente en mercados globales." },
+      { t: "ul", x: [
+        "Gestionar eficientemente los recursos de la organización con visión compartida, con el fin de suministrar bienes y servicios de calidad"
+      ] },
+      { t: "p", x: "Aplicar métodos cuantitativos y cualitativos para el análisis e interpretación de datos y modelado de sistemas, en los procesos organizacionales para la mejora continua, atendiendo estándares de calidad mundial." },
+      { t: "p", x: "Diseñar, evaluar y emprender nuevos negocios y proyectos empresariales, que promuevan el desarrollo sustentable y la responsabilidad social, en un mercado competitivo." },
+      { t: "p", x: "Diseñar e implementar estrategias de mercadotecnia basadas en información recopilada de fuentes primarias y secundarias del consumidor o usuario de algún producto, de acuerdo aoportunidades y amenazas del mercado." },
+      { t: "ul", x: [
+        "Establecer programas para el fortalecimiento de la seguridad e higiene en las organizaciones.",
+        "Gestionar sistemas integrales de calidad, ejerciendo un liderazgo efectivo y un compromiso ético, aplicando las herramientas básicas de la ingeniería.",
+        "Interpretar y aplicar normas legales que incidan en la creación y desarrollo de las organizaciones.",
+        "Integrar, dirigir y desarrollar equipos de trabajo para la mejora continua y el crecimiento integral de las organizaciones."
+      ] },
+      { t: "p", x: "Analizar e interpretar la información financiera para detectar oportunidades de mejora e inversión en un mundo global, que incidan en la rentabilidad del negocio." },
+      { t: "ul", x: [
+        "Utilizar las nuevas tecnologías de información en la organización, para optimizar los procesos de comunicación y eficientar la toma de decisiones."
+      ] },
+      { t: "p", x: "Propiciar el desarrollo del capital humano, para la realización de los objetivos organizacionales, dentro de un marco ético y un contexto multicultural." },
+      { t: "ul", x: [
+        "Aplicar métodos de investigación para desarrollar e innovar sistemas, procesos y productos en las diferentes dimensiones de la organización.",
+        "Gestionar la cadena de suministros de las organizaciones con un enfoque orientado a procesos.",
+        "Analizar e interpretar la economía global para facilitar la toma de decisiones en la organización."
+      ] }
+    ]
+  },
+    5: {   // Electrónica
+    ingreso: [
+      { t: "ul", x: [
+        "El aspirante a Ingeniería deberá contar con las siguientes características para ingresar al plan de estudios:"
+      ] },
+      { t: "p", x: "Habilidades para la comprensión lectora, para la comunicación oral y escrita, para el razonamiento matemático y el pensamiento crítico, para adaptarse a diversas situaciones, para la fácil integración a equipos de trabajo, con interés por las ciencias naturales, matemáticas, física, la investigación, la tecnología, la cultura ambiental, que posea creatividad, actitud positiva y valores, con deseos de ayudar a su comunidad." }
+    ],
+    egreso: [
+      { t: "h", x: "Al egresar el ingeniero electrónico podrá" },
+      { t: "p", x: "Diseñar, analizar, adaptar, operar, construir dirigir y participar en equipos de trabajo inter y multidisciplinarios en la instalación, operación y mantenimiento en proyectos de investigación y desarrollo tecnológico de sistemas analógicos y digitales. de una manera responsable eficaz, eficiente, legal y ética." },
+      { t: "p", x: "Ejercer actitudes emprendedoras de liderazgo y desarrollar habilidades para la toma de decisiones en su ámbito profesional, promoviendo y participando en programas de mejora continúa aplicando normas de calidad." }
+    ]
+  },
+    6: {   // Industrias Alimentarias
+    ingreso: [
+      { t: "ul", x: [
+        "El aspirante a Ingeniería deberá contar con las siguientes características para ingresar al plan de estudios:",
+        "Orientación hacia las ciencias de la química, biología, matemáticas y lógica-matemática.",
+        "Iniciativa, creatividad e interés por la investigación.",
+        "Habilidad para la comunicación oral y de redacción.",
+        "Interés de proyectos orientados a la producción y transformación de alimentos.",
+        "Interés en el uso y transformación de la materia prima y recursos del sector agropecuario.",
+        "Actitudes:",
+        "Capacidad de observación, análisis, discusión y síntesis de la información.",
+        "Capacidad de trabajo individual y en equipo.",
+        "Sensibilidad hacia la problemática social y ambiental.",
+        "Aptitudes:",
+        "Vocación de servicio.",
+        "Curiosidad intelectual orientada a la búsqueda de soluciones.",
+        "Responsabilidad, disponibilidad, honestidad, lealtad y disciplina.",
+        "Gusto por el trabajo al aire libre."
+      ] }
+    ],
+    egreso: [
+      { t: "ul", x: [
+        "El egresado en Ingeniería podrá realizar:"
+      ] },
+      { t: "p", x: "Evalúa sistemas de producción industrial para satisfacer los requerimientos de la industria alimentaria, considerando aspectos de factibilidad y sustentabilidad." },
+      { t: "ul", x: [
+        "Aplica e innova técnicas tradicionales y emergentes para la conservación de alimentos.",
+        "Desarrolla proyectos para la creación de empresas de alimentos.",
+        "Aplica herramientas estadísticas para la toma de decisiones en las industrias alimentarias.",
+        "Aplica métodos de análisis para la estandarización de procesos y características de los productos.",
+        "Inspecciona, controla y evalúa procesos, equipo e instalaciones para asegurar la inocuidad y calidad en la industria alimentaria.",
+        "Conoce los sistemas de gestión para cumplir con la normatividad nacional e internacional.",
+        "Implementa sistemas de gestión de la calidad e inocuidad en industrias productoras de alimentos y productos relacionados.",
+        "Desarrolla nuevos productos para incrementar su valor agregado en la industria alimentaria.",
+        "Desarrolla tecnologías para el aprovechamiento de subproductos alimentarios."
+      ] },
+      { t: "p", x: "Integra cadenas desde el almacenamiento hasta la comercialización de los productos de acuerdo a las oportunidades del mercado nacional e internacional de los cuales se aplican o se mejoran la utilización de los envases, empaque y embalajes de acuerdo con la normatividad de los diferentes productos y del cliente teniendo un enfoque sustentable." }
+    ]
+  },
   7: { ingreso: [], egreso: [] },   // Bioquímica
   8: { ingreso: [], egreso: [] },   // Mecatrónica
   9: {                              // Civil (ejemplo ya capturado, tomado de la captura de pantalla oficial)
