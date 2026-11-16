@@ -22,3 +22,15 @@ function crearCartaApartado(apartado, numero, total, estado) {
   el.querySelector(".carta-volver").addEventListener("click", () => voltearCarta(el, apartado, false));
   return el;
 }
+
+// Contador "Descubiertas: X de N" (el visor crea el elemento .contador-descubiertas)
+function actualizarContador(estado, total) {
+  const el = document.querySelector(".contador-descubiertas");
+  if (el) el.textContent = `Descubiertas: ${estado.descubiertas.size} de ${total}`;
+}
+
+// Barra de progreso: los segmentos de las cartas descubiertas se marcan en amarillo
+function marcarBarras() {
+  const aps = obtenerApartados(estadoPerfil.carreraId);
+  document.querySelectorAll(".visor-barra").forEach((b, i) => b.classList.toggle("descubierta", !!aps[i] && estadoPerfil.descubiertas.has(aps[i].id)));
+}
