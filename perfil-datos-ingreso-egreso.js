@@ -218,8 +218,91 @@ const perfilIngresoEgreso = {
       { t: "p", x: "Integra cadenas desde el almacenamiento hasta la comercialización de los productos de acuerdo a las oportunidades del mercado nacional e internacional de los cuales se aplican o se mejoran la utilización de los envases, empaque y embalajes de acuerdo con la normatividad de los diferentes productos y del cliente teniendo un enfoque sustentable." }
     ]
   },
-  7: { ingreso: [], egreso: [] },   // Bioquímica
-  8: { ingreso: [], egreso: [] },   // Mecatrónica
+    7: {   // Bioquímica
+    ingreso: [
+      { t: "ul", x: [
+        "El aspirante a Ingeniería deberá contar con las siguientes características para ingresar al plan de estudios:",
+        "Conocimientos:",
+        "De redacción, ciencias naturales, matemáticas y lógica matemática.",
+        "De cultura general.",
+        "Cultura Ambiental.",
+        "Física y química.",
+        "Habilidades:",
+        "Para comunicarse con las personas independientemente de su situación socioeconómica y nivel educativo.",
+        "Habilidad lógica en la comprensión de conceptos y problemas reales.",
+        "Para integrarse a equipos de trabajo.",
+        "Para la lectura y comprensión de textos.",
+        "Para comunicarse en forma oral y escrita.",
+        "Interés por la investigación y la tecnología.",
+        "Creatividad e interés por la aplicación de la ciencia y la tecnología en beneficio de la región."
+      ] },
+      { t: "h", x: "Actitudes y valores" },
+      { t: "ul", x: [
+        "De ayuda a las personas.",
+        "De respeto, confidencialidad y empatía con las personas.",
+        "De Honestidad y responsabilidad.",
+        "De liderazgo y humanismo.",
+        "Actitud de servicio.",
+        "Flexibilidad y disponibilidad."
+      ] }
+    ],
+    egreso: [
+      { t: "ul", x: [
+        "Trabajar en equipos multidisciplinarios y multiculturales con liderazgo, sentido crítico, disposición al cambio y comprometido con la calidad.",
+        "Diseñar, seleccionar, adaptar y escalar equipos y procesos en los que se aprovechen de manera sustentable los recursos bióticos.",
+        "Identificar, prevenir, controlar y dar solución a problemas de alta dirección dentro de la práctica de la ingeniería bioquímica.",
+        "Identificar y aplicar tecnologías emergentes relacionadas con el campo de acción del Ingeniero Bioquímico."
+      ] },
+      { t: "p", x: "Participar en el diseño y aplicación de normas y programas de gestión y aseguramiento de la calidad, en empresas e instituciones del ámbito de la Ingeniería Bioquímica." },
+      { t: "ul", x: [
+        "Formular y evaluar proyectos de Ingeniería Bioquímica con criterios de sustentabilidad.",
+        "Realizar investigación científica y tecnológica en el campo de la Ingeniería Bioquímica y difundir sus resultados.",
+        "Crear, implementar y administrar con sustentabilidad, empresas de productos y servicios del ámbito de la Ingeniería Bioquímica."
+      ] }
+    ]
+  },
+    8: {   // Mecatrónica
+    ingreso: [
+      { t: "ul", x: [
+        "El aspirante a Ingeniería deberá contar con las siguientes características para ingresar al plan de estudios:",
+        "Conocimientos:",
+        "De redacción, ciencias naturales, matemáticas y lógica matemática.",
+        "De cultura general.",
+        "Cultura Ambiental.",
+        "Física y química.",
+        "Habilidades:",
+        "Para comunicarse con las personas independientemente de su situación socioeconómica y nivel educativo.",
+        "Habilidad lógica en la comprensión de conceptos y problemas reales.",
+        "Para integrarse a equipos de trabajo.",
+        "Para la lectura y comprensión de textos.",
+        "Para comunicarse en forma oral y escrita.",
+        "Interés por la investigación y la tecnología.",
+        "Creatividad e interés por la aplicación de la ciencia y la tecnología en beneficio de la región.",
+        "Actitudes y valores:",
+        "De ayuda a las personas.",
+        "De respeto, confidencialidad y empatía con las personas.",
+        "De Honestidad y responsabilidad.",
+        "De liderazgo y humanismo.",
+        "Actitud de servicio.",
+        "Flexibilidad y disponibilidad."
+      ] }
+    ],
+    egreso: [
+      { t: "ul", x: [
+        "Al egresar el ingeniero mecatrónico podrá:",
+        "Ejercer su profesión, dentro de un marco legal, teniendo un sentido de responsabilidad social, con apego a las normas nacionales e internacionales."
+      ] },
+      { t: "p", x: "Analizar, sintetizar, diseñar, simular, construir e innovar productos, procesos, equipos y sistemas mecatrónicos, con una actitud investigadora, de acuerdo a las necesidades tecnológicas y sociales actuales y emergentes, impactando positivamente en el entorno global." },
+      { t: "p", x: "Integrar, instalar, construir, optimizar, operar, controlar, mantener, administrar y/o automatizar sistemas mecánicos utilizando tecnologías eléctricas, electrónicas y herramientas computacionales." },
+      { t: "ul", x: [
+        "Evaluar y generar proyectos industriales y de carácter social"
+      ] },
+      { t: "p", x: "Coordinar y dirigir grupos multidisciplinarios fomentando el trabajo en equipo para la implementación de proyectos mecatrónicos, asegurando su calidad, eficiencia, productividad y rentabilidad con sentido de responsabilidad de su entorno social y cultural para un desarrollo sustentable." },
+      { t: "p", x: "Desarrollar capacidades de liderazgo, comunicación e interrelaciones personales para transmitir ideas, facilitar conocimientos, trabajar en equipos multidisciplinarios y multiculturales con responsabilidad colectiva para la solución de problemas y desarrollo de proyectos con un sentido crítico y autocrítico." },
+      { t: "p", x: "Ser creativo, emprendedor y comprometido con su actualización profesional continua y autónoma, para estar a la vanguardia en los cambios científicos y tecnológicos que se dan en el ejercicio de su profesión." },
+      { t: "p", x: "Interpretar información técnica de las áreas que componen la Ingeniería Mecatrónica para la transferencia, adaptación, asimilación e innovación de tecnologías de vanguardia." }
+    ]
+  },
   9: {                              // Civil (ejemplo ya capturado, tomado de la captura de pantalla oficial)
     ingreso: [
       { t: "p", x: "Un aspirante a estudiar la carrera de Ingeniería Civil debe dominar las habilidad en las áreas de matemáticas, física y química, también debe poseer habilidades analíticas y de pensamiento crítico, una mentalidad de resolución de problemas y habilidades de trabajo en equipo." }
@@ -228,5 +311,66 @@ const perfilIngresoEgreso = {
       { t: "p", x: "Un estudiante de Ingeniería Civil al graduarse debe tener la capacidad de aplicar conocimientos y técnicas para diseñar y construir infraestructuras que satisfagan las necesidades de la sociedad, teniendo en cuenta al mismo tiempo la sostenibilidad del medio ambiente. También debe ser capaz de comunicarse eficazmente, trabajar en equipo y poseer dotes de liderazgo." }
     ]
   },
-  10: { ingreso: [], egreso: [] }   // Gastronomía
+    10: {   // Gastronomía
+    ingreso: [
+      { t: "ul", x: [
+        "El aspirante a Gastronomía deberá contar con las siguientes características para ingresar al plan de estudios:",
+        "Conocimientos:",
+        "De redacción, ciencias naturales, matemáticas y lógica matemática."
+      ] },
+      { t: "h", x: "De cultura general" },
+      { t: "h", x: "Cultura Ambiental" },
+      { t: "h", x: "Física y química" },
+      { t: "ul", x: [
+        "Habilidades:",
+        "Para comunicarse con las personas independientemente de su situación socioeconómica y nivel educativo.",
+        "Habilidad lógica en la comprensión de conceptos y problemas reales.",
+        "Para integrarse a equipos de trabajo.",
+        "Para la lectura y comprensión de textos.",
+        "Para comunicarse en forma oral y escrita.",
+        "Interés por la investigación y la tecnología.",
+        "Creatividad e interés por la aplicación de la ciencia y la tecnología en beneficio de la región."
+      ] },
+      { t: "h", x: "Actitudes y valores" },
+      { t: "ul", x: [
+        "De ayuda a las personas.",
+        "De respeto, confidencialidad y empatía con las personas.",
+        "De Honestidad y responsabilidad.",
+        "De liderazgo y humanismo.",
+        "Actitud de servicio.",
+        "Flexibilidad y disponibilidad."
+      ] }
+    ],
+    egreso: [
+      { t: "h", x: "Al egresar el gastrónomo podrá" },
+      { t: "p", x: "Aplicar los principios básicos de la administración y la contabilidad en las actividades propias de las organizaciones de alimentos y bebidas, para el mejor manejo de los ingresos y egresos" },
+      { t: "p", x: "Realizar actividades específicas en el área de ventas y servicio al cliente tales como la creación de programas de comercialización de servicios de alimentos y bebidas." },
+      { t: "p", x: "Aplicar los conocimientos mercadológicos para una mejor comercialización de los diferentes productos y servicios que ofrece una empresa de alimentos y bebidas." },
+      { t: "ul", x: [
+        "Aplicar los conocimientos administrativos básicos en empresas que prestan servicios, compran, transforman y venden alimentos y bebidas.",
+        "Comprender el comportamiento físico-químico de los alimentos para mejorar la elaboración, conservación, innovación y presentación de los mismos.",
+        "Diseñar estructuras administrativas del ámbito gastronómico acorde a los requisitos, aspectos legales, económicos, financieros y comerciales.",
+        "Solucionar problemas y tomar decisiones para el óptimo cumplimiento de las actividades gastronómicas.",
+        "Elaborar planes de negocios y establecer controles de calidad de alimentos y bebidas.",
+        "Organizar y administrar recursos humanos y técnicos en los establecimientos de Alimentos y Bebidas.",
+        "Integrar, organizar, planear y administrar su propio negocio.",
+        "Establecer sistemas de información y control en empresas gastronómicas.",
+        "Generar estrategias para el logro de los objetivos organizacionales.",
+        "Identificar el origen y evolución de la gastronomía mediante el estudio de su desarrollo histórico.",
+        "Implementar las diferentes normas nacionales e internacionales de seguridad e higiene, operando programas para el manejo higiénico de los alimentos.",
+        "Diseñar, implementar y evaluar los procedimientos de recepción, almacenaje y elaboración de alimentos y bebidas.",
+        "Diseñar e implementar cartas y menús.",
+        "Diferenciar el origen y procedimientos de elaboración de las principales bebidas alcohólicas y no alcohólicas."
+      ] },
+      { t: "p", x: "Propiciar la creación y desarrollo de platillos de vanguardia analizando la composición de los alimentos con diversas técnicas y métodos de preparación de la cocina nutricional." },
+      { t: "ul", x: [
+        "Aplicar los conocimientos de las diferentes cocinas para la elaboración de platillos de autor y fusión."
+      ] },
+      { t: "p", x: "Manejar software especializado en organización y control del área de producción y del área de servicio para una mejor administración en los establecimientos de alimentos y bebidas." },
+      { t: "ul", x: [
+        "Aplicar los conocimientos técnicos especializados del idioma francés e inglés en el área gastronómica.",
+        "Desarrollar investigación en torno al fenómeno gastronómico desde el punto de vista, cultural, culinario y administrativo para innovar."
+      ] }
+    ]
+  }
 };
