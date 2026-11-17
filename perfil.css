@@ -11,3 +11,9 @@
 .visor-top { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; font-weight: 700; color: var(--c, #2563eb); flex-wrap: wrap; }
 .contador-descubiertas { width: 100%; text-align: right; color: var(--muted, #687386); font-weight: 600; }
 .visor-sitio { position: relative; z-index: 2; flex: 1; display: flex; padding: 0 6%; }
+.visor-zona { position: absolute; top: 0; bottom: 56px; width: 16%; z-index: 1; cursor: pointer; }
+.visor-zona-izq { left: 0; } .visor-zona-der { right: 0; }
+.visor-nav { display: flex; justify-content: space-between; gap: 10px; }
+.visor-nav button { background: var(--c, #2563eb); color: #fff; flex: 1; }
+.visor-botones button:focus-visible, .visor-nav button:focus-visible, .visor-sec:focus-visible { outline: 3px solid #fbbf24; outline-offset: 2px; }
+@media (min-width: 850px) { .visor-historia, .visor-portada { min-height: 560px; } }

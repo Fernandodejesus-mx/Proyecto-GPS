@@ -93,3 +93,19 @@ function activarDeslizamiento(el) {
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) siguiente(); else anterior(); }
   }, { passive: true });
 }
+function siguiente() {
+  const n = obtenerApartados(carreraVisor.id).length;
+  if (estadoPerfil.indice >= n - 1) mostrarCartaFinal(carreraVisor, estadoPerfil);
+  else irAHistoria(estadoPerfil.indice + 1);
+}
+function anterior() {
+  if (estadoPerfil.indice === 0) mostrarPortada();
+  else irAHistoria(estadoPerfil.indice - 1);
+}
+// Teclado: un solo listener para toda la página; solo actúa si el visor está en pantalla
+document.addEventListener("keydown", e => {
+  if (!visorEl() || modoVisor !== "historia") return;
+  if (e.key === "ArrowRight") siguiente();
+  else if (e.key === "ArrowLeft") anterior();
+  else if (e.key === "Escape") mostrarPortada();
+});
