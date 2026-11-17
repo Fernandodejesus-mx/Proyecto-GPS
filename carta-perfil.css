@@ -28,3 +28,17 @@
   .carta-frente, .carta-reverso { transition: opacity .2s; transform: none !important; }
   .carta-reverso { opacity: 0; } .carta-apartado.volteada .carta-reverso { opacity: 1; } .carta-apartado.volteada .carta-frente { opacity: 0; }
 }
+
+/* Carta final */
+.final-carta { background: linear-gradient(160deg, var(--c-suave, #e9f1ff), #fff); border: 2px solid var(--c, #2563eb); border-radius: 20px; padding: 24px 20px; display: flex; flex-direction: column; gap: 12px; }
+.final-etiqueta { margin: 0; font-size: 11px; letter-spacing: 1.6px; font-weight: 700; color: var(--c, #2563eb); }
+.final-carta h2 { margin: 0; }
+.final-lista { list-style: none; padding: 0 !important; margin: 0; display: grid; gap: 8px; }
+.final-lista li { padding: 10px 12px; border-radius: 10px; font-weight: 600; }
+.final-si { background: #fef3c7; color: #78350f !important; border: 1px solid #fbbf24; }
+.final-no { background: #eef0f4; color: #6b7280 !important; }
+.final-faltan { margin: 0; font-weight: 700; color: #b45309 !important; }
+.final-acciones { display: grid; gap: 10px; }
+.final-btn { min-height: 44px; border: 2px solid var(--c, #2563eb); background: var(--c, #2563eb); color: #fff; border-radius: 12px; padding: 10px 16px; font-weight: 700; cursor: pointer; }
+.final-sec { background: #fff; color: var(--c, #2563eb); }
+.final-btn:focus-visible { outline: 3px solid #fbbf24; outline-offset: 2px; }
