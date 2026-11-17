@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8"><title>Pruebas del perfil visual</title>
+<style>body{font-family:Arial,sans-serif;margin:24px;color:#172033}table{border-collapse:collapse;width:100%}th,td{border:1px solid #d5dbe6;padding:6px 10px;font-size:14px;text-align:center}th:first-child,td:first-child{text-align:left}.ok{background:#dcfce7}.mal{background:#fee2e2}.vacio{background:#fef9c3}</style></head>
+<body>
+<h1>Pruebas del perfil visual</h1>
+<p>Verde: correcto. Amarillo: vacío esperado (Campo laboral de Electrónica y Mecatrónica) o titular pendiente de validar. Rojo: falla.</p>
+<table id="tabla"><thead><tr><th>Carrera</th><th>Ingreso</th><th>Egreso</th><th>Campo laboral</th><th>Retícula (PDFs)</th><th>Titulares</th></tr></thead><tbody></tbody></table>
+<p id="resumen"></p>
+<script src="perfil-datos-ingreso-egreso.js"></script>
+<script src="perfil-datos-laboral.js"></script>
+<script src="perfil-datos-reticula.js"></script>
+<script src="perfil-titulares.js"></script>
+<script src="perfil-titulares-laboral.js"></script>
+<script>
+const NOMBRES={1:"Sistemas Computacionales",2:"Industrial",3:"Electromecánica",4:"Gestión Empresarial",5:"Electrónica",6:"Industrias Alimentarias",7:"Bioquímica",8:"Mecatrónica",9:"Civil",10:"Gastronomía"};
+const VACIO_ESPERADO={5:["laboral"],8:["laboral"]};
+let fallas=0, pendientes=0;
+function celda(id,clave,n){
+  const esperado=(VACIO_ESPERADO[id]||[]).includes(clave);
+  let clase,txt;
+  if(n>0){clase="ok";txt=n+" bloques";}
+  else if(esperado){clase="vacio";txt="vacío (esperado)";}
+  else{clase="mal";txt="FALTA";fallas++;}
+  return `<td class="${clase}">${txt}</td>`;
+}
+function titulares(id){
+  const t=perfilTitulares[id]||{}, vistos=new Set(); let mal=[], pend=0;
+  ["ingreso","egreso","laboral","reticula"].forEach(k=>{
+    const x=(k==="laboral"?perfilTitularesLaboral[id]:t[k])||{}, tit=(x.titular||"").trim();
+    if(!tit){ if(!((VACIO_ESPERADO[id]||[]).includes(k))) mal.push(k+" sin titular"); return; }
+    if(tit.split(/\s+/).length>6) mal.push(k+" tiene más de 6 palabras");
+    if(vistos.has(tit)) mal.push(k+" repetido"); vistos.add(tit);
+    if(!x.icono) mal.push(k+" sin ícono");
+    if(!x.validado) pend++;
+  });
+  if(mal.length){fallas++; return `<td class="mal">${mal.join("; ")}</td>`;}
+  if(pend){pendientes++; return `<td class="vacio">${pend} por validar</td>`;}
+  return `<td class="ok">validados</td>`;
+}
+const tb=document.querySelector("#tabla tbody");
+for(let id=1;id<=10;id++){
+  const ie=perfilIngresoEgreso[id]||{}, la=perfilLaboral[id]||{}, re=perfilReticula[id];
+  const ok=re&&re.especialidades.length>0&&re.especialidades.every(e=>/^https:\/\/www\.itsx\.edu\.mx\/downloads\/reticulas\/.+\.pdf$/.test(e.pdf));
+  if(!ok)fallas++;
+  tb.insertAdjacentHTML("beforeend",`<tr><td>${id} · ${NOMBRES[id]}</td>${celda(id,"ingreso",(ie.ingreso||[]).length)}${celda(id,"egreso",(ie.egreso||[]).length)}${celda(id,"laboral",(la.laboral||[]).length)}<td class="${ok?"ok":"mal"}">${ok?re.especialidades.length+" PDF":"FALTA"}</td>${titulares(id)}</tr>`);
+}
+document.getElementById("resumen").textContent=(fallas===0?"Sin fallas.":"Fallas: "+fallas)+" Carreras con titulares por validar: "+pendientes+".";
+</script></body></html>
