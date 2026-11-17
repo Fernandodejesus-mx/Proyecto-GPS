@@ -70,9 +70,29 @@ const perfilLaboral = {
   3: { laboral: [
     { t: "p", x: "El campo laboral para ingeniero electromecánico es bastante diverso, se puede ocupar en cualquier tipo de industria manufacturera, la metalmecánica, la industria automotriz, la industria eléctrica, las empresas de servicios, hospitales, en hotelería, en instituciones educativas y en empresas transnacionales del manejo, producción transmisión y distribución de energía asi como en plantas generadoras, parques eólicos, en sistemas de generación solar solo por mencionar algunos." }
   ] },   // Electromecánica
-  4: { laboral: [] },   // Gestión Empresarial
+  4: { laboral: [
+    { t: "p", x: "Consultoría Administrativa, que abarca la aplicación correcta del proceso administrativo coordinando las áreas funcionales y delimitando actividades de cada una para el logro eficiente de los objetivos Institucionales" },
+    { t: "ul", x: [
+      "Aplicación de herramientas de liderazgo, fundamentadas en habilidades directivas, para el óptimo funcionamiento del recurso humano en la empresa."
+    ] },
+    { t: "p", x: "Evaluación Financiera de las Organizaciones, determinando el buen manejo de sus activos y pasivos y con ello lograr un equilibrio en los niveles de apalancamientos tanto operativo como financiero." },
+    { t: "p", x: "Diseño Mercadológico de productos, desde su diseño hasta la elaboración de campañas de promoción, publicidad, fuerza de ventas y relaciones públicas que las organizaciones necesiten para el impulso idóneo de sus estrategias de comercialización." }
+  ] },   // Gestión Empresarial
   5: { laboral: [] },   // Electrónica (la página oficial no muestra contenido)
-  6: { laboral: [] },   // Industrias Alimentarias
+  6: { laboral: [
+    { t: "ul", x: [
+      "El campo de trabajo del Ingeniero en industrias alimentarias se ubica tanto en el sector productivo como en el de servicios.",
+      "Podrá desempeñarse en una gran variedad de ámbitos laborales, destacando:",
+      "Plantas procesadoras de alimentos de origen animal y vegetal.",
+      "Laboratorios de control de calidad y de certificación.",
+      "Promoción y gestión de empresas agroalimentarias.",
+      "Desarrollo de nuevos productos alimenticios.",
+      "Consultoría, asesoría y control en el área de inocuidad.",
+      "Creador y gestor de sus propias empresas.",
+      "Aplicación en la docencia y/o investigación en instituciones públicas y privadas.",
+      "Gestión de Proyectos de inversión en industrias de alimentos."
+    ] }
+  ] },   // Industrias Alimentarias
   7: { laboral: [] },   // Bioquímica
   8: { laboral: [] },   // Mecatrónica (la página oficial no muestra contenido)
   9: { laboral: [] },   // Civil
