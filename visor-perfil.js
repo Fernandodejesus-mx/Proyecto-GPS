@@ -52,3 +52,44 @@ function mostrarLista() {
     </div>`;
   document.getElementById("visorHistorias").addEventListener("click", mostrarPortada);
 }
+function irAHistoria(i) {
+  const aps = obtenerApartados(carreraVisor.id);
+  i = Math.max(0, Math.min(i, aps.length - 1));
+  modoVisor = "historia";
+  estadoPerfil.indice = i;
+  estadoPerfil.volteada = false;
+  const ap = aps[i];
+  visorEl().innerHTML = `
+    <div class="visor-historia" id="visorHistoria">
+      <div class="visor-barras">${aps.map(() => `<span class="visor-barra"></span>`).join("")}</div>
+      <div class="visor-top">
+        <span class="visor-etq">${escaparPerfil(ap.nombre.toUpperCase())}</span>
+        <span class="visor-pos">${i + 1} de ${aps.length}</span>
+        <span class="contador-descubiertas" aria-live="polite"></span>
+      </div>
+      <div class="visor-zona visor-zona-izq" aria-hidden="true"></div>
+      <div class="visor-zona visor-zona-der" aria-hidden="true"></div>
+      <div class="visor-sitio" id="visorSitio"></div>
+      <div class="visor-nav">
+        <button id="visorAnt" type="button">‹ Anterior</button>
+        <button id="visorSig" type="button">${i === aps.length - 1 ? "Ver mi carta ›" : "Siguiente ›"}</button>
+      </div>
+    </div>`;
+  document.getElementById("visorSitio").appendChild(crearCartaApartado(ap, i + 1, aps.length, estadoPerfil));
+  document.querySelectorAll(".visor-barra").forEach((b, k) => { if (k <= i) b.classList.add("vista"); });
+  marcarBarras(); actualizarContador(estadoPerfil, aps.length);
+  document.querySelector(".visor-zona-izq").addEventListener("click", () => anterior());
+  document.querySelector(".visor-zona-der").addEventListener("click", () => siguiente());
+  document.getElementById("visorAnt").addEventListener("click", () => anterior());
+  document.getElementById("visorSig").addEventListener("click", () => siguiente());
+  activarDeslizamiento(document.getElementById("visorHistoria"));
+}
+// Deslizamiento táctil horizontal: |dx| > 50 px y mayor que |dy|
+function activarDeslizamiento(el) {
+  let x0 = 0, y0 = 0;
+  el.addEventListener("touchstart", e => { x0 = e.changedTouches[0].clientX; y0 = e.changedTouches[0].clientY; }, { passive: true });
+  el.addEventListener("touchend", e => {
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) siguiente(); else anterior(); }
+  }, { passive: true });
+}

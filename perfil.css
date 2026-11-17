@@ -3,3 +3,11 @@
 .visor-item h3 { margin: 0 0 2px; color: var(--c, #2563eb); }
 .visor-item-nombre { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--muted, #687386); text-transform: uppercase; }
 .visor-sec { background: var(--c, #2563eb); color: #fff; }
+.visor-historia { position: relative; background: linear-gradient(160deg, var(--c-suave, #e9f1ff), #fff); border: 1px solid var(--line, #e5e9f0); border-radius: 20px; padding: 14px 16px 16px; min-height: 70vh; display: flex; flex-direction: column; gap: 10px; touch-action: pan-y; }
+.visor-barras { display: flex; gap: 4px; }
+.visor-barra { flex: 1; height: 5px; border-radius: 3px; background: rgba(0,0,0,.12); }
+.visor-barra.vista { background: var(--c, #2563eb); }
+.visor-barra.descubierta { background: #fbbf24; }
+.visor-top { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; font-weight: 700; color: var(--c, #2563eb); flex-wrap: wrap; }
+.contador-descubiertas { width: 100%; text-align: right; color: var(--muted, #687386); font-weight: 600; }
+.visor-sitio { position: relative; z-index: 2; flex: 1; display: flex; padding: 0 6%; }
