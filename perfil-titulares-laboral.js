@@ -8,14 +8,14 @@
 // Mientras un titular esté vacío, el visor muestra el nombre del apartado y la página de pruebas lo marca.
 const L0 = { titular: "", icono: "", validado: false };
 const perfilTitularesLaboral = {
-  1: { ...L0 },   // Sistemas Computacionales
-  2: { ...L0 },   // Industrial
-  3: { ...L0 },   // Electromecánica
-  4: { ...L0 },   // Gestión Empresarial
-  5: { ...L0 },   // Electrónica (la página oficial no publica Campo laboral)
-  6: { ...L0 },   // Industrias Alimentarias
-  7: { ...L0 },   // Bioquímica
-  8: { ...L0 },   // Mecatrónica (la página oficial no publica Campo laboral)
-  9: { ...L0 },   // Civil
-  10: { ...L0 }   // Gastronomía
+  1: { titular: "Desarrollarás sistemas y software", icono: "💻", validado: false },   // Sistemas Computacionales
+  2: { titular: "Mejorarás procesos industriales", icono: "⚙️", validado: false },   // Industrial
+  3: { titular: "Diseñarás sistemas electromecánicos", icono: "🔧", validado: false },   // Electromecánica
+  4: { titular: "Gestionarás empresas y proyectos", icono: "📊", validado: false },   // Gestión Empresarial
+  5: { ...L0 },   // Electrónica
+  6: { titular: "Desarrollarás productos alimenticios", icono: "🥫", validado: false },   // Industrias Alimentarias
+  7: { titular: "Crearás productos biotecnológicos", icono: "🧬", validado: false },   // Bioquímica
+  8: { ...L0 },   // Mecatrónica
+  9: { titular: "Diseñarás y construirás infraestructura", icono: "🏗️", validado: false },   // Civil
+  10: { titular: "Gestionarás negocios gastronómicos 👨‍🍳", icono: "👨‍🍳", validado: false }   // Gastronomía
 };
