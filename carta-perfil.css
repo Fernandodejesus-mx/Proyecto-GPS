@@ -18,3 +18,7 @@
 .carta-pdf { color: var(--c, #2563eb); font-weight: 700; display: inline-block; min-height: 44px; line-height: 44px; }
 .carta-fuente { margin: 6px 0 0; font-size: 11px; color: var(--muted, #687386); }
 .carta-volver { align-self: flex-end; margin-top: 6px; min-height: 44px; border: 0; background: var(--c-suave, #e9f1ff); color: var(--c, #2563eb); padding: 8px 14px; border-radius: 10px; cursor: pointer; font-weight: 700; }
+
+.carta-apartado.volteada .carta-frente { transform: rotateY(180deg); pointer-events: none; }
+.carta-apartado.volteada .carta-reverso { transform: rotateY(0); }
+.carta-apartado:not(.volteada) .carta-reverso { pointer-events: none; }

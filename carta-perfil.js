@@ -34,3 +34,16 @@ function marcarBarras() {
   const aps = obtenerApartados(estadoPerfil.carreraId);
   document.querySelectorAll(".visor-barra").forEach((b, i) => b.classList.toggle("descubierta", !!aps[i] && estadoPerfil.descubiertas.has(aps[i].id)));
 }
+
+// Giro: alterna .volteada. Solo la primera vez que se voltea una carta cuenta como descubierta.
+function voltearCarta(el, apartado, volteada) {
+  el.classList.toggle("volteada", volteada);
+  estadoPerfil.volteada = volteada;
+  el.querySelector(".carta-frente").setAttribute("aria-pressed", String(volteada));
+  if (!volteada || estadoPerfil.descubiertas.has(apartado.id)) return;
+  estadoPerfil.descubiertas.add(apartado.id);
+  const total = obtenerApartados(estadoPerfil.carreraId).length;
+  actualizarContador(estadoPerfil, total);
+  marcarBarras();
+  document.dispatchEvent(new CustomEvent("carta-descubierta", { detail: { carreraId: estadoPerfil.carreraId, apartadoId: apartado.id, descubiertas: estadoPerfil.descubiertas.size, total } }));
+}
