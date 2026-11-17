@@ -10,17 +10,14 @@
 // Mientras un titular esté vacío, el visor muestra el nombre del apartado y la página de pruebas lo marca.
 const T0 = { titular: "", icono: "", validado: false };
 const perfilTitulares = {
-  1:  { ingreso: { ...T0 }, egreso: { ...T0 }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },
-  2:  { ingreso: { ...T0 }, egreso: { ...T0 }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },
-  3:  { ingreso: { ...T0 }, egreso: { ...T0 }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },
-  4:  { ingreso: { ...T0 }, egreso: { ...T0 }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },
-  5:  { ingreso: { ...T0 }, egreso: { ...T0 }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },
-  6:  { ingreso: { ...T0 }, egreso: { ...T0 }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },
-  7:  { ingreso: { ...T0 }, egreso: { ...T0 }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },
-  8:  { ingreso: { ...T0 }, egreso: { ...T0 }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },
-  9:  { // Civil: ejemplos redactados con el texto oficial (pendientes de validar)
-        ingreso: { titular: "Necesitarás ciencias y trabajo en equipo", icono: "📐", validado: false },
-        egreso:  { titular: "Diseñarás infraestructura sostenible", icono: "🏗️", validado: false },
-        reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },
-  10: { ingreso: { ...T0 }, egreso: { ...T0 }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } }
+  1:  { ingreso: { titular: "Usarás lógica, tecnología y creatividad", icono: "💻", validado: false }, egreso: { titular: "Construirás software, redes y datos", icono: "🖥️", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },   // Sistemas Computacionales
+  2:  { ingreso: { titular: "Razonarás, analizarás y resolverás problemas", icono: "🔧", validado: false }, egreso: { titular: "Mejorarás sistemas productivos y de calidad", icono: "⚙️", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },   // Industrial
+  3:  { ingreso: { titular: "Te interesarán electricidad y mecánica", icono: "⚡", validado: false }, egreso: { titular: "Diseñarás y controlarás sistemas electromecánicos", icono: "🔌", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },   // Electromecánica
+  4:  { ingreso: { titular: "Razonarás con lógica y espíritu emprendedor", icono: "📊", validado: false }, egreso: { titular: "Dirigirás organizaciones y negocios sustentables", icono: "💼", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },   // Gestión Empresarial
+  5:  { ingreso: { titular: "Te atraerán ciencias, matemáticas y tecnología", icono: "🔬", validado: false }, egreso: { titular: "Diseñarás sistemas analógicos y digitales", icono: "📡", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },   // Electrónica
+  6:  { ingreso: { titular: "Te atraerán química, biología y alimentos", icono: "🧪", validado: false }, egreso: { titular: "Producirás alimentos seguros y de calidad", icono: "🍎", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },   // Industrias Alimentarias
+  7:  { ingreso: { titular: "Aplicarás ciencias naturales, matemáticas y lógica", icono: "🧬", validado: false }, egreso: { titular: "Diseñarás procesos con recursos bióticos sustentables", icono: "🌱", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },   // Bioquímica
+  8:  { ingreso: { titular: "Pensarás con lógica, trabajarás en equipo", icono: "🤖", validado: false }, egreso: { titular: "Innovarás productos y sistemas mecatrónicos", icono: "🦾", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },   // Mecatrónica
+  9:  { ingreso: { titular: "Necesitarás ciencias y trabajo en equipo", icono: "📐", validado: false }, egreso: { titular: "Diseñarás infraestructura sostenible", icono: "🏗️", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } },   // Civil
+  10: { ingreso: { titular: "Tendrás vocación de servicio y comunicación", icono: "🍳", validado: false }, egreso: { titular: "Crearás platillos y dirigirás tu negocio", icono: "🍽️", validado: false }, reticula: { titular: "Conocerás tu retícula", icono: "🗺️", validado: false } }   // Gastronomía
 };
