@@ -22,3 +22,9 @@
 .carta-apartado.volteada .carta-frente { transform: rotateY(180deg); pointer-events: none; }
 .carta-apartado.volteada .carta-reverso { transform: rotateY(0); }
 .carta-apartado:not(.volteada) .carta-reverso { pointer-events: none; }
+
+.carta-frente:focus-visible, .carta-volver:focus-visible { outline: 3px solid #fbbf24; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .carta-frente, .carta-reverso { transition: opacity .2s; transform: none !important; }
+  .carta-reverso { opacity: 0; } .carta-apartado.volteada .carta-reverso { opacity: 1; } .carta-apartado.volteada .carta-frente { opacity: 0; }
+}
