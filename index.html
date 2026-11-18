@@ -11,6 +11,13 @@
   <link rel="stylesheet" href="animaciones.css">
   <link rel="stylesheet" href="perfil.css">
   <link rel="stylesheet" href="carta-perfil.css">
+  <link rel="stylesheet" href="acceso.css">
+  <link rel="stylesheet" href="calendario.css">
+  <link rel="stylesheet" href="pasaporte.css">
+  <link rel="stylesheet" href="huellas.css">
+  <link rel="stylesheet" href="mapa-campus.css">
+  <link rel="stylesheet" href="duelo.css">
+  <link rel="stylesheet" href="interes.css">
 </head>
 <body>
   <aside class="sidebar">
@@ -27,7 +34,12 @@
       <button class="nav-item" id="navInicio">⌂ <span>Inicio</span></button>
       <button class="nav-item" id="navCuestionario">✎ <span>Cuestionario</span></button>
       <button class="nav-item" id="navCarrerasRecomendadas">🎯 <span>Carreras recomendadas</span></button>
-      <button class="nav-item" id="navFaq">? <span>Preguntas frecuentes</span></button>
+      <button class="nav-item" id="navMapa">🗺 <span>Mapa del campus</span></button>
+      <button class="nav-item" id="navCalendario">📅 <span>Calendario de eventos</span></button>
+      <button class="nav-item" id="navPasaporte">🛂 <span>Mi pasaporte</span></button>
+      <button class="nav-item" id="navDuelo">⚔ <span>Duelo de carreras</span></button>
+      <button class="nav-item hidden" id="navInteres">📊 <span>Mi carrera</span></button>
+      <button class="nav-item" id="navFaq">
     </nav>
 
     <div class="sidebar-bottom">
@@ -127,7 +139,7 @@
             <button class="detail-tab" data-tab="perfil">Perfil de la carrera <span>›</span></button>
             <button class="detail-tab" data-tab="laboral">Campo laboral <span>›</span></button>
             <button class="detail-tab" data-tab="actividades">Actividades <span>›</span></button>
-          </aside>
+            <button class="detail-tab" data-tab="huellas">Huellas <span>›</span></button>          </aside>
 
           <article class="detail-content" id="panelDetalle"></article>
         </div>
@@ -322,6 +334,12 @@
           <p>Estamos preparando las respuestas. Vuelve pronto.</p>
         </div>
       </section>
+      <section id="mapaCampus" class="hidden" aria-label="Mapa del campus"></section>
+      <section id="calendario" class="hidden" aria-label="Calendario de eventos"></section>
+      <section id="pasaporte" class="hidden" aria-label="Mi pasaporte ITSX"></section>
+      <section id="duelo" class="hidden" aria-label="Duelo de carreras"></section>
+      <section id="interes" class="hidden" aria-label="Mi carrera (jefes de carrera)"></section>
+    </main>
     </main>
 
     <footer>
@@ -352,5 +370,26 @@
   <!-- HU-10 · T-78: Preguntas frecuentes -->
   <script src="faq-datos.js"></script>
   <script src="faq.js"></script>
+  <!-- Sprint final -->
+  <script src="nav-final.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+  <script src="eventos-datos.js"></script>
+  <script src="eventos-ejemplo.js"></script>
+  <script src="acceso-jefe.js"></script>
+  <script src="calendario.js"></script>
+  <script src="pasaporte.js"></script>
+  <script src="eventos-pasados.js"></script>
+  <script src="huellas.js"></script>
+  <script src="mapa-datos.js"></script>
+  <script src="mapa-campus.js"></script>
+  <script src="duelo-datos.js"></script>
+  <script src="duelo-logica.js"></script>
+  <script src="duelo.js"></script>
+  <script src="metricas-datos.js"></script>
+  <script src="metricas.js"></script>
+  <script src="panel-interes.js"></script>  
 </body>
 </html>

@@ -368,7 +368,10 @@ function renderPanel(c, tab) {
     abrirVisorPerfil(c);
     return;
   }
-
+   if (tab === "huellas") {
+    renderHuellas(c);
+    return;
+  }
   if (tab === "perfil-anterior") {
     $("panelDetalle").innerHTML = `
       <p class="eyebrow">HU-04 · PERFIL DE EGRESO</p>
