@@ -1,0 +1,25 @@
+Contrato de datos — colección «eventos» (un documento por evento)
+  carreraId   número   1 a 10 (el mismo id de script.js). Lo pone la página con la carrera del jefe.
+  titulo      texto    5 a 80 caracteres
+  fecha       texto    AAAA-MM-DD   (ej. 2026-12-10)
+  hora        texto    HH:MM en 24 horas   (ej. 10:30)
+  lugar       texto    3 a 80 caracteres
+  edificio    texto    una letra A a O, o vacío
+  tipo        texto    expo | taller | concurso | visita | conferencia
+  descripcion texto    hasta 400 caracteres (puede ir vacío)
+  enlace      texto    vacío o que empiece con https://
+
+Contrato de datos — colección «jefes» (un documento por jefe; el ID del documento es el UID de su cuenta)
+  carreraId   número   la carrera que administra
+
+Funciones públicas (las usan Fernando y Guillermo)
+  abrirCalendario(carreraId)          abre el calendario; con carreraId lo deja filtrado
+  obtenerEventosFuturos(carreraId)    devuelve (promesa) los eventos de hoy en adelante; 0 o nada = todas
+Eventos que lanza la página (los escucha Mi pasaporte)
+  carta-descubierta, edificio-visitado, huellas-vistas, carrera-elegida, quiero-ir
+
+Cómo crear la cuenta de un jefe de carrera
+  1. Firebase → Authentication → Usuarios → Agregar usuario (correo y contraseña).
+  2. Copiar el UID de la cuenta.
+  3. Firestore → colección «jefes» → agregar documento con ese UID como ID y el campo carreraId (número).
+  4. Entregar la contraseña en persona o por un medio privado. Pedir que la cambie con «Olvidé mi contraseña» de Firebase.
