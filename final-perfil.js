@@ -16,9 +16,11 @@ function mostrarCartaFinal(carrera, estado) {
         <button id="finalActividades" type="button" class="final-btn">Conocer las actividades de esta carrera</button>
         <button id="finalRepasar" type="button" class="final-btn final-sec">Volver a verlo</button>
         <button id="finalDescargar" type="button" class="final-btn final-sec">Descargar mi carta (PNG)</button>
+        <button id="finalHuellas" type="button" class="final-btn final-sec">Ver las huellas de mi carrera</button>
       </div>
     </div>`;
   document.getElementById("finalActividades").addEventListener("click", () => irATab("actividades"));
+  document.getElementById("finalHuellas").addEventListener("click", () => abrirHuellas(carrera.id));
   document.getElementById("finalRepasar").addEventListener("click", () => { estadoPerfil.indice = 0; abrirVisorPerfil(carrera); });
   const pend = document.getElementById("finalPendiente");
   if (pend) pend.addEventListener("click", () => irAHistoria(aps.findIndex(a => !estado.descubiertas.has(a.id))));
