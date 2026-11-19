@@ -1,0 +1,39 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Un jefe de carrera es una persona con sesión iniciada que aparece en la colección "jefes"
+    function esJefe() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/jefes/$(request.auth.uid));
+    }
+    function carreraDelJefe() {
+      return get(/databases/$(database)/documents/jefes/$(request.auth.uid)).data.carreraId;
+    }
+    // Que el evento tenga todos los campos y de los tamaños correctos
+    function eventoValido(e) {
+      return e.titulo is string && e.titulo.size() >= 5 && e.titulo.size() <= 80
+        && e.fecha is string && e.fecha.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && e.hora is string && e.hora.matches('^([01][0-9]|2[0-3]):[0-5][0-9]$')
+        && e.lugar is string && e.lugar.size() >= 3 && e.lugar.size() <= 80
+        && e.tipo in ['expo', 'taller', 'concurso', 'visita', 'conferencia']
+        && e.descripcion is string && e.descripcion.size() <= 400
+        && e.enlace is string && e.enlace.size() <= 300
+        && e.edificio is string && e.edificio.size() <= 1
+        && e.carreraId is int;
+    }
+
+    match /eventos/{id} {
+      allow read: if true;     // cualquier persona puede ver los eventos
+      allow create: if esJefe() && request.resource.data.carreraId == carreraDelJefe() && eventoValido(request.resource.data);
+      allow update: if esJefe() && resource.data.carreraId == carreraDelJefe()
+                    && request.resource.data.carreraId == carreraDelJefe() && eventoValido(request.resource.data);
+      allow delete: if esJefe() && resource.data.carreraId == carreraDelJefe();
+    }
+
+    match /jefes/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;   // cada jefe solo ve su propio registro
+      allow write: if false;                                           // solo se editan desde la consola de Firebase
+    }
+  }
+}
