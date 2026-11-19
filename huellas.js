@@ -50,3 +50,40 @@ function abrirHuellas(carreraId) {
   irACarrera(carreraId);
   irATab("huellas");
 }
+
+// ---- Tarjetas que voltean y filtros por tipo
+function activarVolteo() {
+  const linea = document.getElementById("hlLinea");
+  const voltear = carta => {
+    const volteada = carta.classList.toggle("volteada");
+    carta.setAttribute("aria-pressed", String(volteada));
+  };
+  linea.addEventListener("click", e => { const c = e.target.closest(".hl-carta"); if (c) voltear(c); });
+  linea.addEventListener("keydown", e => {
+    const c = e.target.closest(".hl-carta");
+    if (c && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); voltear(c); }
+  });
+}
+
+function pintarFiltros(carrera) {
+  const tipos = [...new Set(obtenerHuellas(carrera.id).map(h => h.tipo))];
+  const caja = document.getElementById("hlFiltros");
+  if (tipos.length < 2) { caja.innerHTML = ""; return; }
+  caja.innerHTML = `<div class="hl-filtros" role="group" aria-label="Filtrar por tipo">
+    <button type="button" class="hl-chip" data-tipo="" aria-pressed="true">Todas</button>
+    ${tipos.map(t => `<button type="button" class="hl-chip" data-tipo="${t}" aria-pressed="false">${escHTML(TIPOS_HUELLA[t])}</button>`).join("")}</div>`;
+  caja.addEventListener("click", e => {
+    const b = e.target.closest(".hl-chip");
+    if (!b) return;
+    caja.querySelectorAll(".hl-chip").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    pintarLinea(carrera, b.dataset.tipo);
+  });
+}
+
+// Conecta el volteo y los filtros cada vez que se dibuja la pestaña Huellas
+document.addEventListener("huellas-vistas", e => {
+  if (!document.getElementById("hlFiltros")) return;   // el aviso llegó sin la pestaña abierta
+  const carrera = carreras.find(c => c.id === e.detail.carreraId);
+  pintarFiltros(carrera);
+  activarVolteo();
+});
