@@ -23,3 +23,7 @@
   .hl-cara { transition: opacity .2s; transform: none !important; }
   .hl-reverso { opacity: 0; } .hl-carta.volteada .hl-reverso { opacity: 1; } .hl-carta.volteada .hl-frente { opacity: 0; }
 }
+
+.hl-filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.hl-chip { min-height: 44px; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 8px 16px; font-weight: 700; cursor: pointer; }
+.hl-chip[aria-pressed="true"] { background: var(--c, #2563eb); color: #fff; border-color: var(--c, #2563eb); }
