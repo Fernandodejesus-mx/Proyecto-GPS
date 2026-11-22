@@ -1,1 +1,18 @@
-/* Contenido temporal de la Base (T-157). */
+/* HU-47 · Mapa del campus (archivo de Fernando). Prefijo .mp- */
+.mp-hero h1 { margin: 4px 0; }
+.mp-layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; margin-top: 14px; }
+.mp-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 16px; background: #fff; }
+.mp-lienzo { position: relative; min-width: 560px; width: 100%; }
+.mp-lienzo img { display: block; width: 100%; height: 100%; user-select: none; }
+.mp-zona { position: absolute; border: 2px solid transparent; border-radius: 4px; background: transparent; padding: 0; cursor: pointer; }
+.mp-edificio:hover, .mp-edificio:focus-visible { background: rgba(37,99,235,.28); border-color: #2563eb; outline: none; }
+.mp-edificio.sel { background: rgba(251,191,36,.45); border-color: #f59e0b; }
+.mp-poi { display: none; border-color: #16a34a; background: rgba(34,197,94,.22); }
+.mp-lienzo.con-poi .mp-poi { display: block; }
+.mp-poi.sel { background: rgba(34,197,94,.5); }
+.mp-panel { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 18px; min-height: 160px; }
+.mp-panel h3 { margin: 0 0 8px; font-family: "Space Grotesk", Arial, sans-serif; color: var(--navy); }
+.mp-sub { margin: 10px 0 4px; font-size: 12px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); }
+.mp-puntos, .mp-carrera ul { margin: 0; padding-left: 18px; color: #334155; font-size: 14px; line-height: 1.5; }
+.mp-vacio, .mp-nota { color: var(--muted); font-size: 14px; }
+@media (max-width: 860px) { .mp-layout { grid-template-columns: 1fr; } }
