@@ -66,3 +66,47 @@ function observarSesion() {
   });
 }
 observarSesion();
+// ---- Eventos: validación y escritura
+const TIPOS_EVENTO = { expo: "Exposición", taller: "Taller", concurso: "Concurso", visita: "Visita", conferencia: "Conferencia" };
+
+function hoyISO() {
+  const d = new Date();
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+
+// Devuelve la lista de errores (vacía si el evento es válido)
+function validarEvento(ev, hoy) {
+  const e = [];
+  const titulo = (ev.titulo || "").trim();
+  if (titulo.length < 5 || titulo.length > 80) e.push("El título debe tener entre 5 y 80 caracteres.");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(ev.fecha || "") || isNaN(new Date(ev.fecha + "T00:00:00"))) e.push("Elige una fecha válida.");
+  else if (ev.fecha < hoy) e.push("La fecha no puede ser anterior a hoy.");
+  if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(ev.hora || "")) e.push("Escribe la hora en formato de 24 horas, por ejemplo 10:30.");
+  if ((ev.lugar || "").trim().length < 3) e.push("Escribe el lugar del evento.");
+  if (!TIPOS_EVENTO[ev.tipo]) e.push("Elige el tipo de evento.");
+  if ((ev.descripcion || "").length > 400) e.push("La descripción no puede pasar de 400 caracteres.");
+  if (ev.enlace && !/^https:\/\/\S+$/.test(ev.enlace)) e.push("El enlace debe empezar con https://");
+  return e;
+}
+
+// La carrera siempre sale de la sesión, nunca del formulario
+function guardarEvento(ev, id) {
+  if (!sesionJefe.jefe) return Promise.reject(new Error("Inicia sesión primero."));
+  const datos = {
+    carreraId: sesionJefe.jefe.carreraId,
+    titulo: ev.titulo.trim(), fecha: ev.fecha, hora: ev.hora,
+    lugar: ev.lugar.trim(), edificio: ev.edificio || "", tipo: ev.tipo,
+    descripcion: (ev.descripcion || "").trim(), enlace: (ev.enlace || "").trim()
+  };
+  const col = dbEventos.collection("eventos");
+  return id ? col.doc(id).set(datos) : col.add(datos);
+}
+
+function borrarEvento(id) {
+  return dbEventos.collection("eventos").doc(id).delete();
+}
+
+function eventosDeMiCarrera() {
+  return dbEventos.collection("eventos").where("carreraId", "==", sesionJefe.jefe.carreraId).get()
+    .then(s => s.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora)));
+}
