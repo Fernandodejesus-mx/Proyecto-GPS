@@ -108,3 +108,54 @@ function descargarICS(ev) {
 accionesEvento.push(ev => `<span class="pas-cuenta">${textoCuentaRegresiva(diasFaltantes(ev.fecha, hoyISO()))}</span>
   <button type="button" class="pas-btn" data-accion="ics" data-id="${escHTML(ev.id)}">Agregar a mi calendario</button>`);
 manejadoresAccion.ics = id => { const ev = buscarEvento(id); if (ev) descargarICS(ev); };
+
+// ---- Sellos y meta "explorador"
+const META_EXPLORADOR = 5;
+
+function resumenSellos(p) {
+  const claves = Object.keys(p.sellos);
+  return { total: claves.length, meta: claves.length >= META_EXPLORADOR };
+}
+
+// Guarda un sello nuevo (una sola vez por clave) y avisa con un mensaje breve
+function otorgarSello(clave, etiqueta, icono) {
+  if (pasaporte.sellos[clave]) return false;
+  pasaporte.sellos[clave] = { etiqueta, icono, fecha: hoyISO() };
+  guardarPasaporte(pasaporte);
+  avisarSello(etiqueta, icono);
+  pintarSellos();
+  return true;
+}
+
+function avisarSello(etiqueta, icono) {
+  let aviso = document.getElementById("pasAviso");
+  if (!aviso) {
+    aviso = document.createElement("div");
+    aviso.id = "pasAviso"; aviso.className = "pas-aviso"; aviso.setAttribute("role", "status"); aviso.setAttribute("aria-live", "polite");
+    document.body.appendChild(aviso);
+  }
+  const r = resumenSellos(pasaporte);
+  aviso.textContent = icono + " Nuevo sello: " + etiqueta + (r.total === META_EXPLORADOR ? " · ¡Eres explorador del ITSX!" : "");
+  aviso.classList.add("visible");
+  clearTimeout(avisarSello.t);
+  avisarSello.t = setTimeout(() => aviso.classList.remove("visible"), 3500);
+}
+
+function pintarSellos() {
+  const caja = document.getElementById("pasSellos");
+  if (!caja) return;
+  const r = resumenSellos(pasaporte);
+  const sellos = Object.keys(pasaporte.sellos).map(k => pasaporte.sellos[k]);
+  caja.innerHTML = `<p class="pas-progreso">Llevas <b>${r.total}</b> de ${META_EXPLORADOR} sellos para ser explorador.</p>
+    <div class="pas-barra" role="progressbar" aria-valuemin="0" aria-valuemax="${META_EXPLORADOR}" aria-valuenow="${Math.min(r.total, META_EXPLORADOR)}"><span style="width:${Math.min(100, r.total / META_EXPLORADOR * 100)}%"></span></div>
+    ${r.meta ? `<p class="pas-meta">🏅 ¡Eres explorador del ITSX! Ya conoces cómo es la vida en cada carrera.</p>` : ""}
+    <div class="pas-sellos">${sellos.length ? sellos.map(s => `<div class="pas-sello"><span aria-hidden="true">${escHTML(s.icono)}</span><b>${escHTML(s.etiqueta)}</b><small>${escHTML(s.fecha)}</small></div>`).join("") : `<p class="ev-vacio">Todavía no tienes sellos. Descubre una carta del perfil, visita un edificio del mapa o toca «Quiero ir».</p>`}</div>`;
+}
+document.addEventListener("pasaporte:abierto", pintarSellos);
+
+// Cada acción del sitio avisa con un evento; aquí se convierten en sellos
+document.addEventListener("carta-descubierta", e => otorgarSello("carta-" + e.detail.carreraId, "Primera carta de " + nombreCarrera(e.detail.carreraId), "🎓"));
+document.addEventListener("edificio-visitado", e => otorgarSello("edificio-" + e.detail.edificio, "Visitaste el edificio " + e.detail.edificio, "🏫"));
+document.addEventListener("huellas-vistas", e => otorgarSello("huellas-" + e.detail.carreraId, "Huellas de " + nombreCarrera(e.detail.carreraId), "👣"));
+document.addEventListener("carrera-elegida", e => otorgarSello("elegida-" + e.detail.carreraId, "Elegiste " + nombreCarrera(e.detail.carreraId), "⚔️"));
+document.addEventListener("quiero-ir", e => { const ev = buscarEvento(e.detail.id); otorgarSello("ir-" + e.detail.id, "Quiero ir: " + (ev ? ev.titulo : "evento"), "📅"); });
