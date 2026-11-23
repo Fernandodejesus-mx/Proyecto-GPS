@@ -110,3 +110,39 @@ function eventosDeMiCarrera() {
   return dbEventos.collection("eventos").where("carreraId", "==", sesionJefe.jefe.carreraId).get()
     .then(s => s.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora)));
 }
+// ---- Lectura pública de eventos (con respaldo si el servidor no responde)
+const eventosEstado = { origen: "ninguno", lista: [] };   // origen: servidor | respaldo
+
+function ordenarEventos(lista) {
+  return lista.slice().sort((a, b) => (a.fecha + a.hora).localeCompare(b.fecha + b.hora));
+}
+
+function leerServidor() {
+  const limite = new Promise((_, rechazar) => setTimeout(() => rechazar(new Error("tiempo agotado")), 4000));
+  // Solo se leen los eventos de hoy en adelante: así se gastan menos lecturas del plan gratuito
+  const lectura = dbEventos.collection("eventos").where("fecha", ">=", hoyISO()).get().then(s => s.docs.map(d => ({ id: d.id, ...d.data() })));
+  return Promise.race([lectura, limite]);
+}
+
+function cargarEventos() {
+  const respaldo = () => {
+    eventosEstado.origen = "respaldo";
+    eventosEstado.lista = ordenarEventos(EVENTOS_EJEMPLO);
+    return eventosEstado.lista;
+  };
+  if (!firebaseActivo) return Promise.resolve(respaldo());
+  return leerServidor().then(lista => {
+    eventosEstado.origen = "servidor";
+    eventosEstado.lista = ordenarEventos(lista);
+    return eventosEstado.lista;
+  }).catch(respaldo);
+}
+
+function filtrarFuturos(lista, carreraId, hoy) {
+  return lista.filter(e => e.fecha >= hoy && (!carreraId || e.carreraId === carreraId));
+}
+
+// Contrato público: lo usan el mapa y el duelo
+function obtenerEventosFuturos(carreraId) {
+  return cargarEventos().then(lista => filtrarFuturos(lista, carreraId, hoyISO()));
+}
