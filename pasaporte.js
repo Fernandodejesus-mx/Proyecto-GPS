@@ -70,3 +70,41 @@ function pintarAgenda() {
 document.addEventListener("click", e => {
   if (e.target.closest('[data-accion="ir"]') && document.getElementById("pasAgenda")) setTimeout(pintarAgenda, 0);
 });
+
+// ---- Cuenta regresiva y exportar a mi calendario (.ics)
+function diasFaltantes(fecha, hoy) {
+  const a = new Date(hoy + "T00:00:00"), b = new Date(fecha + "T00:00:00");
+  return Math.round((b - a) / 86400000);
+}
+function textoCuentaRegresiva(dias) {
+  if (dias < 0) return "Ya pasó";
+  if (dias === 0) return "Es hoy";
+  if (dias === 1) return "Es mañana";
+  return "Faltan " + dias + " días";
+}
+
+function escaparICS(t) {
+  return String(t || "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
+}
+// Archivo .ics: dura 2 horas y usa la hora local del evento
+function generarICS(ev) {
+  const [a, m, d] = ev.fecha.split("-").map(Number);
+  const [h, mi] = ev.hora.split(":").map(Number);
+  const f = (fecha) => fecha.getFullYear() + String(fecha.getMonth() + 1).padStart(2, "0") + String(fecha.getDate()).padStart(2, "0") + "T" + String(fecha.getHours()).padStart(2, "0") + String(fecha.getMinutes()).padStart(2, "0") + "00";
+  const inicio = new Date(a, m - 1, d, h, mi), fin = new Date(a, m - 1, d, h + 2, mi);
+  return ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Tu Carrera Tec//ITSX//ES", "CALSCALE:GREGORIAN", "BEGIN:VEVENT",
+    "UID:" + ev.id + "@tucarreratec", "DTSTAMP:" + f(new Date()), "DTSTART:" + f(inicio), "DTEND:" + f(fin),
+    "SUMMARY:" + escaparICS(ev.titulo), "LOCATION:" + escaparICS(ev.lugar + (ev.edificio ? " (Edificio " + ev.edificio + ")" : "")),
+    "DESCRIPTION:" + escaparICS(ev.descripcion), "END:VEVENT", "END:VCALENDAR"].join("\r\n") + "\r\n";
+}
+function descargarICS(ev) {
+  const blob = new Blob([generarICS(ev)], { type: "text/calendar;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = "evento-" + ev.id + ".ics";
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+accionesEvento.push(ev => `<span class="pas-cuenta">${textoCuentaRegresiva(diasFaltantes(ev.fecha, hoyISO()))}</span>
+  <button type="button" class="pas-btn" data-accion="ics" data-id="${escHTML(ev.id)}">Agregar a mi calendario</button>`);
+manejadoresAccion.ics = id => { const ev = buscarEvento(id); if (ev) descargarICS(ev); };
