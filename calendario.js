@@ -1,8 +1,4 @@
-// Contenido temporal de la Base (T-157): se reemplaza más adelante.
-function abrirCalendario() {
-  mostrarSeccion("calendario", "Calendario de eventos", "navCalendario");
-  document.getElementById("calendario").innerHTML = enConstruccion("Calendario de eventos");
-}
+
 // HU-44 · Calendario de eventos y panel del jefe de carrera (archivo de Gloria)
 const MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
 const MESES_CORTOS = MESES.map(m => m.slice(0, 3).toUpperCase());
@@ -132,4 +128,125 @@ function renderPanelJefe(contenedor) {
     }
   });
   actualizarVistaPrevia(); listarMisEventos();
+}
+// ---- Calendario público: funciones puras (se pueden probar sin pantalla)
+// Semanas del mes empezando en lunes. Cada día: { fecha: "AAAA-MM-DD", dia, delMes }
+function construirMes(anio, mes) {
+  const iso = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  const primero = new Date(anio, mes, 1);
+  const inicio = new Date(anio, mes, 1 - ((primero.getDay() + 6) % 7));
+  const semanas = [];
+  for (let s = 0; s < 6; s++) {
+    const fila = [];
+    for (let d = 0; d < 7; d++) {
+      const f = new Date(inicio.getFullYear(), inicio.getMonth(), inicio.getDate() + s * 7 + d);
+      fila.push({ fecha: iso(f), dia: f.getDate(), delMes: f.getMonth() === mes });
+    }
+    if (s >= 4 && !fila.some(x => x.delMes)) break;
+    semanas.push(fila);
+  }
+  return semanas;
+}
+
+// Los 7 días (lunes a domingo) de la semana que contiene a "hoy"
+function semanaDe(hoy) {
+  const [a, m, d] = hoy.split("-").map(Number);
+  const f = new Date(a, m - 1, d);
+  const lunes = new Date(a, m - 1, d - ((f.getDay() + 6) % 7));
+  return Array.from({ length: 7 }, (_, i) => {
+    const x = new Date(lunes.getFullYear(), lunes.getMonth(), lunes.getDate() + i);
+    return x.getFullYear() + "-" + String(x.getMonth() + 1).padStart(2, "0") + "-" + String(x.getDate()).padStart(2, "0");
+  });
+}
+
+function agruparPorFecha(lista) {
+  const mapa = {};
+  lista.forEach(e => { (mapa[e.fecha] = mapa[e.fecha] || []).push(e); });
+  return mapa;
+}
+
+// ---- Calendario público: pantalla
+const cal = { carrera: 0, tipo: "", vista: "mes", anio: 0, mes: 0, dia: "" };
+const DIAS_CORTOS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+
+function abrirCalendario(carreraId) {
+  const hoy = hoyISO().split("-").map(Number);
+  cal.carrera = carreraId || 0; cal.tipo = ""; cal.dia = ""; cal.vista = "mes";
+  cal.anio = hoy[0]; cal.mes = hoy[1] - 1;
+  mostrarSeccion("calendario", "Calendario de eventos", "navCalendario");
+  document.getElementById("calendario").innerHTML = `
+    <div class="cal-hero"><p class="eyebrow">VIVE EL ITSX</p><h1>Calendario de eventos</h1>
+      <p class="lead">Conoce las actividades que cada carrera prepara para ti. Cualquier persona puede consultarlo.</p></div>
+    <div id="calJefe"></div>
+    <div class="cal-filtros">
+      <label>Carrera <select id="calCarrera"><option value="0">Todas</option>${carreras.map(c => `<option value="${c.id}">${escHTML(c.nombre)}</option>`).join("")}</select></label>
+      <label>Tipo <select id="calTipo"><option value="">Todos</option>${Object.keys(TIPOS_EVENTO).map(k => `<option value="${k}">${TIPOS_EVENTO[k]}</option>`).join("")}</select></label>
+      <div class="cal-vistas" role="group" aria-label="Vista"><button type="button" data-vista="mes" aria-pressed="true">Mes</button><button type="button" data-vista="semana" aria-pressed="false">Esta semana</button></div>
+    </div>
+    <p id="calAviso" class="cal-aviso"></p>
+    <div id="calVista"></div>
+    <h3 id="calListaTit">Próximos eventos</h3>
+    <div id="calLista" class="ev-lista"></div>`;
+  document.getElementById("calCarrera").value = String(cal.carrera);
+  document.getElementById("calCarrera").addEventListener("change", e => { cal.carrera = Number(e.target.value); cal.dia = ""; pintarCalendario(); });
+  document.getElementById("calTipo").addEventListener("change", e => { cal.tipo = e.target.value; cal.dia = ""; pintarCalendario(); });
+  document.querySelectorAll(".cal-vistas button").forEach(b => b.addEventListener("click", () => {
+    cal.vista = b.dataset.vista; cal.dia = "";
+    document.querySelectorAll(".cal-vistas button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    pintarCalendario();
+  }));
+  renderPanelJefe(document.getElementById("calJefe"));
+  return cargarEventos().then(pintarCalendario);
+}
+
+function eventosVisibles() {
+  return filtrarFuturos(eventosEstado.lista, cal.carrera, hoyISO()).filter(e => !cal.tipo || e.tipo === cal.tipo);
+}
+
+function pintarCalendario() {
+  if (!document.getElementById("calVista")) return;
+  const lista = eventosVisibles();
+  const porFecha = agruparPorFecha(lista);
+  document.getElementById("calAviso").textContent = eventosEstado.origen === "respaldo" ? "No pudimos conectar con el servidor: se muestran eventos de ejemplo." : "";
+  const vista = document.getElementById("calVista");
+  if (cal.vista === "mes") {
+    const semanas = construirMes(cal.anio, cal.mes);
+    vista.innerHTML = `<div class="cal-mes"><div class="cal-nav"><button type="button" id="calAnt" aria-label="Mes anterior">‹</button>
+      <strong>${MESES[cal.mes]} ${cal.anio}</strong><button type="button" id="calSig" aria-label="Mes siguiente">›</button></div>
+      <div class="cal-grid">${DIAS_CORTOS.map(d => `<span class="cal-dia-nom">${d}</span>`).join("")}
+      ${semanas.flat().map(d => {
+        const evs = porFecha[d.fecha] || [];
+        return `<button type="button" class="cal-dia${d.delMes ? "" : " fuera"}${d.fecha === hoyISO() ? " hoy" : ""}${d.fecha === cal.dia ? " sel" : ""}" data-fecha="${d.fecha}" aria-label="${d.dia} de ${MESES[Number(d.fecha.split("-")[1]) - 1]}${evs.length ? ", " + evs.length + " evento(s)" : ""}">
+          <span>${d.dia}</span><span class="cal-puntos">${evs.slice(0, 3).map(e => `<i class="carrera-${CARRERA_SLUG[e.carreraId]}"></i>`).join("")}</span></button>`;
+      }).join("")}</div></div>`;
+    document.getElementById("calAnt").addEventListener("click", () => { cal.mes--; if (cal.mes < 0) { cal.mes = 11; cal.anio--; } cal.dia = ""; pintarCalendario(); });
+    document.getElementById("calSig").addEventListener("click", () => { cal.mes++; if (cal.mes > 11) { cal.mes = 0; cal.anio++; } cal.dia = ""; pintarCalendario(); });
+    vista.querySelectorAll(".cal-dia").forEach(b => b.addEventListener("click", () => { cal.dia = cal.dia === b.dataset.fecha ? "" : b.dataset.fecha; pintarCalendario(); }));
+  } else {
+    vista.innerHTML = `<div class="cal-semana">${semanaDe(hoyISO()).map((f, i) => {
+      const evs = porFecha[f] || [];
+      return `<div class="cal-sem-dia"><b>${DIAS_CORTOS[i]} ${Number(f.split("-")[2])}</b>${evs.length ? evs.map(e => `<a href="#ev-${escHTML(e.id)}" class="carrera-${CARRERA_SLUG[e.carreraId]}">${escHTML(e.hora)} ${escHTML(e.titulo)}</a>`).join("") : "<span>Sin eventos</span>"}</div>`;
+    }).join("")}</div>`;
+  }
+  const mostrar = cal.vista === "mes" && cal.dia ? lista.filter(e => e.fecha === cal.dia) : lista;
+  document.getElementById("calListaTit").textContent = cal.vista === "mes" && cal.dia ? "Eventos del " + Number(cal.dia.split("-")[2]) + " de " + MESES[Number(cal.dia.split("-")[1]) - 1] : "Próximos eventos";
+  document.getElementById("calLista").innerHTML = mostrar.length ? mostrar.map(e => tarjetaEventoHTML(e, false)).join("") : `<p class="ev-vacio">No hay eventos con estos filtros.</p>`;
+  document.dispatchEvent(new CustomEvent("calendario:render"));
+}
+
+// Cuando cambia la sesión o se guardan eventos, el calendario se actualiza solo
+document.addEventListener("sesion-jefe", () => {
+  const cont = document.getElementById("calJefe");
+  if (cont) renderPanelJefe(cont);
+});
+document.addEventListener("eventos-cambiaron", () => { if (document.getElementById("calVista")) cargarEventos().then(pintarCalendario); });
+
+// Resalta un evento (lo usa el enlace de "Compartir")
+function resaltarEvento(id) {
+  cal.carrera = 0; cal.tipo = ""; cal.dia = "";
+  pintarCalendario();
+  const el = document.getElementById("ev-" + id);
+  if (!el) return false;
+  el.classList.add("ev-resaltado"); el.scrollIntoView({ behavior: "smooth", block: "center" });
+  return true;
 }
