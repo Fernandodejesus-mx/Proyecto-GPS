@@ -4,3 +4,4 @@
 .pas-btn.activo { background: var(--blue); color: #fff; }
 .pas-enlace { border: 0; background: none; color: var(--blue); font-weight: 700; text-decoration: underline; cursor: pointer; padding: 0; min-height: 32px; }
 .ev-acciones { display: flex; flex-wrap: wrap; align-items: center; }
+.pas-cuenta { background: #fef3c7; color: #92400e; font-weight: 700; font-size: 13px; border-radius: 999px; padding: 4px 12px; margin: 6px 8px 0 0; }
