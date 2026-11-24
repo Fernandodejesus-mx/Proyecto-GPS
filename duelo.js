@@ -121,3 +121,28 @@ function pintarElegir() {
   });
   form.addEventListener("submit", e => { e.preventDefault(); abrirDuelo(marcadas()); });
 }
+
+// ---- Conexión con el cuestionario: botón en «Cuestionario completado» y en la pantalla de resultados
+(function () {
+  const acciones = document.querySelector("#quizFinal .quiz-final-actions");
+  const boton = document.createElement("button");
+  boton.type = "button"; boton.id = "btnQuizDuelo"; boton.className = "btn btn-primary";
+  boton.textContent = "⚔️ Compara tus carreras";
+  boton.addEventListener("click", () => abrirDuelo());
+  acciones.appendChild(boton);
+
+  // pantalla-resultados.js ya dibujó los resultados cuando llega este aviso
+  document.addEventListener("cuestionario:finalizado", () => {
+    const caja = document.getElementById("resultadosContenido");
+    if (!caja || caja.querySelector("#duCta")) return;
+    caja.insertAdjacentHTML("beforeend", `<div class="du-cta"><div><h3>¿Te quedaron varias carreras?</h3><p>Compáralas en un duelo y quédate con una.</p></div><button type="button" id="duCta" class="btn btn-primary">⚔️ Compara tus carreras</button></div>`);
+    document.getElementById("duCta").addEventListener("click", () => abrirDuelo());
+  });
+
+  // Carreras recomendadas: el mismo botón arriba de la pantalla (usa las carreras del cuestionario, o deja elegir)
+  const recomendadas = document.getElementById("carrerasRecomendadas");
+  if (recomendadas && !document.getElementById("duCtaRec")) {
+    recomendadas.insertAdjacentHTML("afterbegin", `<div class="du-cta"><div><h3>¿No sabes cuál elegir?</h3><p>Compara tus carreras de dos en dos en un duelo.</p></div><button type="button" id="duCtaRec" class="btn btn-primary">⚔️ Compara tus carreras</button></div>`);
+    document.getElementById("duCtaRec").addEventListener("click", () => abrirDuelo());
+  }
+})();

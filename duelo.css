@@ -33,3 +33,6 @@
 .du-opcion { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; min-height: 44px; cursor: pointer; }
 .du-aviso { color: var(--muted); }
 #duEmpezar { background: var(--blue); } #duEmpezar:disabled { opacity: .45; cursor: not-allowed; }
+
+.du-cta { display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; background: #eef2fb; border-radius: 16px; padding: 16px 20px; margin: 20px 0; }
+.du-cta h3, .du-cta p { margin: 0 0 4px; }
