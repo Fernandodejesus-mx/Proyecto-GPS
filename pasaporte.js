@@ -159,3 +159,32 @@ document.addEventListener("edificio-visitado", e => otorgarSello("edificio-" + e
 document.addEventListener("huellas-vistas", e => otorgarSello("huellas-" + e.detail.carreraId, "Huellas de " + nombreCarrera(e.detail.carreraId), "👣"));
 document.addEventListener("carrera-elegida", e => otorgarSello("elegida-" + e.detail.carreraId, "Elegiste " + nombreCarrera(e.detail.carreraId), "⚔️"));
 document.addEventListener("quiero-ir", e => { const ev = buscarEvento(e.detail.id); otorgarSello("ir-" + e.detail.id, "Quiero ir: " + (ev ? ev.titulo : "evento"), "📅"); });
+
+// ---- Compartir un evento con un enlace
+function urlEvento(id) { return location.href.split("#")[0] + "#evento-" + id; }
+
+function copiarTexto(texto) {
+  if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(texto);
+  return new Promise((ok, fallo) => {
+    const t = document.createElement("textarea");
+    t.value = texto; document.body.appendChild(t); t.select();
+    try { document.execCommand("copy") ? ok() : fallo(); } catch (e) { fallo(e); }
+    t.remove();
+  });
+}
+
+accionesEvento.push(ev => `<button type="button" class="pas-btn" data-accion="compartir" data-id="${escHTML(ev.id)}">Compartir</button>`);
+manejadoresAccion.compartir = (id, boton) => {
+  copiarTexto(urlEvento(id)).then(() => { boton.textContent = "¡Enlace copiado!"; }).catch(() => { boton.textContent = urlEvento(id); });
+  setTimeout(() => { boton.textContent = "Compartir"; }, 2500);
+};
+
+// Si alguien abre un enlace compartido, se muestra el calendario y se resalta el evento
+function abrirEnlaceEvento() {
+  const m = location.hash.match(/^#evento-(.+)$/);
+  if (!m) return;
+  const id = decodeURIComponent(m[1]);
+  abrirCalendario().then(() => resaltarEvento(id));
+}
+window.addEventListener("hashchange", abrirEnlaceEvento);
+abrirEnlaceEvento();
