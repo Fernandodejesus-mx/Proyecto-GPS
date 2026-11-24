@@ -35,5 +35,36 @@ service cloud.firestore {
       allow read: if request.auth != null && request.auth.uid == uid;   // cada jefe solo ve su propio registro
       allow write: if false;                                           // solo se editan desde la consola de Firebase
     }
+
+    // ---- HU-48 · interés en cada carrera (T-209) ----
+    function contadores() { return ['visitas', 'huellas', 'mapa', 'quieroIr', 'duelo', 'primera', 'enLista', 'cuestionarios']; }
+    function metricaBase(d, id) {
+      return d.carreraId is int && d.carreraId >= 0 && d.carreraId <= 10
+        && d.fecha is string && d.fecha.matches('^20[0-9][0-9]-[01][0-9]-[0-3][0-9]$')
+        && id == 'c' + string(d.carreraId) + '_' + d.fecha;
+    }
+    function empiezaEnUno(d) {
+      return d.get('visitas', 1) == 1 && d.get('huellas', 1) == 1 && d.get('mapa', 1) == 1 && d.get('quieroIr', 1) == 1
+          && d.get('duelo', 1) == 1 && d.get('primera', 1) == 1 && d.get('enLista', 1) == 1 && d.get('cuestionarios', 1) == 1;
+    }
+    function sube(d, r, c) { return d.get(c, 0) - r.get(c, 0) in [0, 1]; }
+    function suben1(d, r) {
+      return sube(d, r, 'visitas') && sube(d, r, 'huellas') && sube(d, r, 'mapa') && sube(d, r, 'quieroIr')
+          && sube(d, r, 'duelo') && sube(d, r, 'primera') && sube(d, r, 'enLista') && sube(d, r, 'cuestionarios');
+    }
+
+    match /metricas/{id} {
+      allow read: if esJefe();      // solo un jefe de carrera ve los números
+      // cualquier persona puede SUMAR 1 a un contador; no puede leer, bajar ni borrar nada
+      allow create: if metricaBase(request.resource.data, id)
+                    && request.resource.data.keys().hasOnly(['carreraId', 'fecha'].concat(contadores()))
+                    && request.resource.data.keys().size() == 3
+                    && empiezaEnUno(request.resource.data);
+      allow update: if metricaBase(request.resource.data, id)
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(contadores())
+                    && request.resource.data.diff(resource.data).affectedKeys().size() == 1
+                    && suben1(request.resource.data, resource.data);
+      allow delete: if false;
+    }
   }
 }
