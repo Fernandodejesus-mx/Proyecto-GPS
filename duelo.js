@@ -77,125 +77,47 @@ document.addEventListener("keydown", e => {
   else if (e.key === "ArrowRight") elegirCarta(d.derecha);
 });
 
-// Muestra la pantalla final con la carrera ganadora
-function pintarGanadora(id) {
-    dueloEstado.vista = "ganadora";
-
-    const c = carreras.find(x => x.id === Number(id));
-
-    if (!c) {
-        document.getElementById("duelo").innerHTML =
-            "<p>No se pudo encontrar la carrera ganadora.</p>";
-        return;
-    }
-
-    const slug = CARRERA_SLUG[c.id];
-
-    document.getElementById("duelo").innerHTML = `
-        <div class="du-hero">
-            <p class="eyebrow">RESULTADO FINAL</p>
-            <h1>¡Tenemos una ganadora!</h1>
-            <p>Esta es la carrera que elegiste al finalizar tus duelos.</p>
+// ---- Revelado de la carrera ganadora
+function pintarGanadora(carreraId) {
+  dueloEstado.vista = "final";
+  const c = carreras.find(x => x.id === carreraId);
+  document.getElementById("duelo").innerHTML = `
+    <div class="du-final carrera-${CARRERA_SLUG[carreraId]}">
+      <p class="du-suspenso">Tu carrera es…</p>
+      <div class="du-reveal">
+        <img src="recursos/${CARRERA_SLUG[carreraId]}/icono.svg" alt="" width="72" height="72">
+        <h2>${escHTML(c.nombre)}</h2>
+        <p>${escHTML(c.resumen)}</p>
+        <ul class="du-datos">${DIMENSIONES.map(d => { const x = cartaDeCarrera(carreraId, d.id); return `<li><span aria-hidden="true">${x.icono}</span> <b>${escHTML(d.pregunta)}</b><br>${escHTML(x.texto)}</li>`; }).join("")}</ul>
+        <div class="du-acciones">
+          <button type="button" id="duPerfil">Ver el perfil de esta carrera</button>
+          <button type="button" id="duCarta" class="du-sec">Descargar mi carta</button>
+          <button type="button" id="duOtra" class="du-sec">Volver a competir</button>
         </div>
-
-        <div class="du-escenario">
-            <div class="du-carta gana">
-                <img src="recursos/${slug}/icono.svg"
-                     alt=""
-                     width="64"
-                     height="64">
-
-                <span class="du-nombre">${escHTML(c.nombre)}</span>
-                <span class="du-texto">${escHTML(c.resumen)}</span>
-            </div>
-        </div>
-    `;
+      </div>
+    </div>`;
+  document.getElementById("duPerfil").addEventListener("click", () => { irACarrera(carreraId); irATab("perfil"); });
+  document.getElementById("duCarta").addEventListener("click", () => descargarCartaEgresado(c));
+  document.getElementById("duOtra").addEventListener("click", () => pintarElegir());
+  document.dispatchEvent(new CustomEvent("carrera-elegida", { detail: { carreraId } }));
 }
 
-
-// HU-46 · Pantalla inicial para elegir las carreras del duelo
+// Si no hay resultado del cuestionario, la persona elige de 2 a 5 carreras
 function pintarElegir() {
-    dueloEstado.vista = "elegir";
-
-    const contenedor = document.getElementById("duelo");
-
-    contenedor.innerHTML = `
-        <div class="du-hero">
-            <p class="eyebrow">DUELO DE CARRERAS</p>
-            <h1>¿Qué carreras quieres enfrentar?</h1>
-            <p>Selecciona entre 2 y 5 carreras para comenzar tu duelo.</p>
-        </div>
-
-        <div class="du-seleccion">
-            <div class="du-seleccion-info">
-                <p id="duMensaje">Elige al menos 2 carreras.</p>
-                <span>Máximo 5 carreras</span>
-            </div>
-
-            <div class="du-lista-carreras">
-                ${carreras.map(c => {
-                    const slug = CARRERA_SLUG[c.id];
-
-                    return `
-                        <label class="du-opcion">
-                            <input
-                                type="checkbox"
-                                class="du-checkbox"
-                                value="${c.id}"
-                            >
-
-                            <img
-                                src="recursos/${slug}/icono.svg"
-                                alt=""
-                                width="40"
-                                height="40"
-                            >
-
-                            <span>${escHTML(c.nombre)}</span>
-                        </label>
-                    `;
-                }).join("")}
-            </div>
-
-            <button id="duEmpezar" class="du-empezar" disabled>
-                Empezar el duelo
-            </button>
-        </div>
-    `;
-
-    const checks = contenedor.querySelectorAll(".du-checkbox");
-    const mensaje = document.getElementById("duMensaje");
-    const boton = document.getElementById("duEmpezar");
-
-    function actualizarSeleccion() {
-        const seleccionadas = [...checks]
-            .filter(check => check.checked);
-
-        const cantidad = seleccionadas.length;
-
-        mensaje.textContent = cantidad < 2
-            ? "Elige al menos 2 carreras."
-            : `${cantidad} carreras elegidas.`;
-
-        boton.disabled = cantidad < 2;
-
-        checks.forEach(check => {
-            check.disabled =
-                !check.checked && cantidad >= 5;
-        });
-    }
-
-    checks.forEach(check => {
-        check.addEventListener("change", actualizarSeleccion);
-    });
-
-    boton.addEventListener("click", () => {
-        const ids = [...checks]
-            .filter(check => check.checked)
-            .map(check => Number(check.value));
-
-        if (ids.length < 2 || ids.length > 5) return;
-
-        abrirDuelo(ids);
-    });
+  dueloEstado.vista = "elegir";
+  document.getElementById("duelo").innerHTML = `
+    <div class="du-hero"><p class="eyebrow">DUELO DE CARRERAS</p><h1>Elige las carreras que quieres comparar</h1>
+      <p class="lead">Escoge de 2 a 5. Si contestas el cuestionario, aquí aparecerán automáticamente las que mejor se relacionan contigo.</p></div>
+    <form id="duForm" class="du-elegir"><div class="du-lista">${carreras.map(c => `<label class="du-opcion"><input type="checkbox" value="${c.id}"> <span>${escHTML(c.nombre)}</span></label>`).join("")}</div>
+      <p id="duAviso" class="du-aviso" role="status">Elige al menos 2 carreras.</p>
+      <button type="submit" id="duEmpezar" disabled>Empezar el duelo</button></form>`;
+  const form = document.getElementById("duForm");
+  const marcadas = () => [...form.querySelectorAll("input:checked")].map(i => Number(i.value));
+  form.addEventListener("change", () => {
+    const n = marcadas().length;
+    form.querySelectorAll("input:not(:checked)").forEach(i => { i.disabled = n >= 5; });
+    document.getElementById("duEmpezar").disabled = n < 2;
+    document.getElementById("duAviso").textContent = n < 2 ? "Elige al menos 2 carreras." : n >= 5 ? "Llegaste al máximo de 5 carreras." : n + " carreras elegidas.";
+  });
+  form.addEventListener("submit", e => { e.preventDefault(); abrirDuelo(marcadas()); });
 }
